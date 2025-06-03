@@ -1,0 +1,251 @@
+{
+  "navigation": {
+    "catalog": "Catalog",
+    "about": "About",
+    "contacts": "Contacts",
+    "news": "News & Promotions",
+    "cart": "Cart",
+    "login": "Login",
+    "register": "Register",
+    "profile": "Profile",
+    "myOrders": "My Orders",
+    "adminPanel": "Admin Panel",
+    "logout": "Logout"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "categories": "Categories",
+    "brands": "Brands",
+    "orders": "Orders",
+    "users": "Users",
+    "news": "News",
+    "pages": "Pages",
+    "contacts": "Contacts",
+    "site": "Website",
+    "addPage": "Add Page",
+    "addNews": "Add News",
+    "editNews": "Edit News",
+    "createNews": "Create News",
+    "editContact": "Edit Contact Information",
+    "pagesList": "Pages List",
+    "newsList": "News List",
+    "edit": "Edit",
+    "delete": "Delete",
+    "id": "ID",
+    "title": "Title",
+    "slug": "Slug",
+    "slugHint": "Slug (URL) - leave empty for automatic generation",
+    "actions": "Actions",
+    "image": "Image",
+    "noImage": "No image",
+    "type": "Type",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "publishDate": "Publish Date",
+    "content": "Content",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "latitudePlaceholder": "Example: 55.7558",
+    "longitudePlaceholder": "Example: 37.6173",
+    "workingHours": "Working Hours",
+    "workingHoursPlaceholder": "Example: Mon-Fri: 9:00-18:00",
+    "socialNetworks": "Social Networks",
+    "socialNetworkName": "Name (e.g., Facebook)",
+    "socialNetworkUrl": "URL (e.g., https://facebook.com/mypage)",
+    "addSocialNetwork": "Add Social Network",
+    "newsType": "News",
+    "promoType": "Promotion",
+    "confirmDelete": "Are you sure you want to delete this page?",
+    "confirmDeleteNews": "Are you sure you want to delete this news?",
+    "editorPlaceholder": "Enter content..."
+  },
+  "home": {
+    "title": "Home",
+    "hero": {
+      "title1": "Quality products",
+      "title2": "at affordable prices",
+      "description": "Welcome to our online store! We offer a wide range of quality products from leading manufacturers.",
+      "toCatalog": "Browse catalog",
+      "aboutUs": "About us"
+    },
+    "popularCategories": {
+      "title": "Popular categories",
+      "products": "products",
+      "allCategories": "All categories"
+    },
+    "featuredProducts": {
+      "title": "Featured products",
+      "toCatalog": "Browse catalog"
+    },
+    "advantages": {
+      "title": "Why choose us",
+      "delivery": {
+        "title": "Fast delivery",
+        "description": "We deliver your orders in the shortest possible time throughout the country."
+      },
+      "quality": {
+        "title": "Quality guarantee",
+        "description": "We are responsible for the quality of all products presented in our store."
+      },
+      "payment": {
+        "title": "Convenient payment",
+        "description": "Various payment methods for your convenience."
+      }
+    },
+    "latestNews": {
+      "title": "Latest news and promotions",
+      "readMore": "Read more",
+      "allNews": "All news"
+    }
+  },
+  "catalog": {
+    "title": "Product catalog",
+    "categories": "Categories",
+    "brands": "Brands",
+    "price": "Price",
+    "from": "From",
+    "to": "To",
+    "resetFilters": "Reset filters",
+    "allProducts": "All products",
+    "sortBy": "Sort by:",
+    "sort": {
+      "newest": "Newest arrivals",
+      "priceAsc": "Price: low to high",
+      "priceDesc": "Price: high to low",
+      "nameAsc": "Name: A-Z",
+      "nameDesc": "Name: Z-A"
+    },
+    "noProductsFound": "No products found. Try changing the filter parameters.",
+    "addToCart": "Add to cart"
+  },
+  "about": {
+    "title": "About us",
+    "subtitle": "About our company",
+    "intro": "We strive to provide our customers with the best products and service. Learn more about our history, mission, and team.",
+    "history": {
+      "title": "Our history",
+      "text1": "Our company was founded in 2010 with the aim of providing quality products at affordable prices. We started as a small store with a limited assortment, but thanks to the support of our customers and the pursuit of excellence, we have grown into one of the leading online stores in our industry.",
+      "text2": "Over the years, we have established strong partnerships with leading manufacturers, which allows us to offer a wide range of quality products at competitive prices. We are constantly expanding our catalog to meet the growing needs of our customers."
+    },
+    "mission": {
+      "title": "Our mission and values",
+      "quality": {
+        "title": "Quality",
+        "description": "We carefully select products for our catalog, guaranteeing high quality and reliability of each product."
+      },
+      "customer": {
+        "title": "Customer focus",
+        "description": "We put customer needs first and strive to provide an exceptional level of service."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "We are constantly looking for new solutions and improvements to make the shopping process more convenient and enjoyable."
+      }
+    },
+    "team": {
+      "title": "Our team",
+      "member1": {
+        "name": "John Smith",
+        "position": "CEO"
+      },
+      "member2": {
+        "name": "Anna Johnson",
+        "position": "COO"
+      },
+      "member3": {
+        "name": "David Miller",
+        "position": "CTO"
+      },
+      "member4": {
+        "name": "Elena Williams",
+        "position": "Sales Director"
+      }
+    },
+    "whyUs": {
+      "title": "Why choose us",
+      "reason1": {
+        "title": "Wide assortment",
+        "description": "Thousands of products from leading manufacturers in one place for your convenience."
+      },
+      "reason2": {
+        "title": "Quality guarantee",
+        "description": "We work only with verified suppliers and guarantee the quality of each product."
+      },
+      "reason3": {
+        "title": "Fast delivery",
+        "description": "We deliver orders in the shortest possible time throughout the country and abroad."
+      },
+      "reason4": {
+        "title": "Professional support",
+        "description": "Our specialists are always ready to help with product selection and answer all questions."
+      }
+    }
+  },
+  "contacts": {
+    "title": "Contacts",
+    "ourContacts": "Our contacts",
+    "address": {
+      "title": "Address",
+      "value": "123456, Moscow, Example St., 10, office 100"
+    },
+    "phone": {
+      "title": "Phone",
+      "value1": "+7 (123) 456-78-90",
+      "value2": "+7 (987) 654-32-10"
+    },
+    "email": {
+      "title": "Email",
+      "value1": "info@example.com",
+      "value2": "support@example.com"
+    },
+    "workingHours": {
+      "title": "Working hours",
+      "weekdays": "Mon-Fri: 9:00 - 18:00",
+      "saturday": "Sat: 10:00 - 15:00",
+      "sunday": "Sun: closed"
+    },
+    "socialMedia": {
+      "title": "Follow us on social media",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn"
+    },
+    "contactForm": {
+      "title": "Contact us",
+      "name": "Your name",
+      "email": "Your email",
+      "phone": "Your phone",
+      "message": "Message",
+      "submit": "Send",
+      "requiredField": "This field is required",
+      "invalidEmail": "Please enter a valid email"
+    }
+  },
+  "footer": {
+    "about": "About",
+    "aboutText": "Your trusted supplier of quality products. We strive to offer the best assortment and service.",
+    "links": "Links",
+    "contacts": "Contacts",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "back": "Back to list",
+    "cancel": "Cancel",
+    "save": "Save",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "shopName": "Online Store",
+    "success": "Operation completed successfully"
+  },
+  "language": {
+    "ru": "Русский",
+    "en": "English"
+  }
+}
