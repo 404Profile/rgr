@@ -97,7 +97,7 @@
                         {{ status }}
                     </div>
 
-                    <form @submit.prevent="submit">
+                    <form @submit.prevent="validateAndSubmit">
                         <div class="grid grid-cols-1 gap-6">
                             <div>
                                 <InputLabel for="name" value="Имя" />
@@ -108,7 +108,7 @@
                                     class="mt-1 block w-full"
                                     required
                                 />
-                                <InputError :message="form.errors.name" class="mt-1" />
+                                <InputError :message="errors.name" class="mt-1" />
                             </div>
 
                             <div>
@@ -120,7 +120,7 @@
                                     class="mt-1 block w-full"
                                     required
                                 />
-                                <InputError :message="form.errors.email" class="mt-1" />
+                                <InputError :message="errors.email" class="mt-1" />
                             </div>
 
                             <div>
@@ -131,7 +131,7 @@
                                     type="tel"
                                     class="mt-1 block w-full"
                                 />
-                                <InputError :message="form.errors.phone" class="mt-1" />
+                                <InputError :message="errors.phone" class="mt-1" />
                             </div>
 
                             <div>
@@ -143,7 +143,7 @@
                                     class="mt-1 block w-full"
                                     required
                                 />
-                                <InputError :message="form.errors.subject" class="mt-1" />
+                                <InputError :message="errors.subject" class="mt-1" />
                             </div>
 
                             <div>
@@ -155,7 +155,7 @@
                                     rows="5"
                                     required
                                 />
-                                <InputError :message="form.errors.message" class="mt-1" />
+                                <InputError :message="errors.message" class="mt-1" />
                             </div>
 
                             <div>
@@ -197,6 +197,7 @@ import TextInput from '@/Components/TextInput.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
 import Textarea from '@/Components/Textarea.vue';
+import { ref } from 'vue';
 
 const props = defineProps({
     status: String
@@ -210,9 +211,59 @@ const form = useForm({
     message: ''
 });
 
-const submit = () => {
-    form.post(route('contact.send'), {
-        onSuccess: () => form.reset()
+const errors = ref({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+});
+
+const validateForm = () => {
+    Object.keys(errors.value).forEach(key => {
+        errors.value[key] = '';
     });
+
+    let isValid = true;
+
+    const nameRegex = /^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+$/;
+    if (!nameRegex.test(form.name)) {
+        errors.value.name = 'Введите полное ФИО в формате "Фамилия Имя Отчество"';
+        isValid = false;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(form.email)) {
+        errors.value.email = 'Введите корректный email адрес';
+        isValid = false;
+    }
+
+    if (form.phone) {
+        const phoneRegex = /^\d{11}$/;
+        if (!phoneRegex.test(form.phone)) {
+            errors.value.phone = 'Телефон должен содержать 11 цифр без символов +, - и пробелов';
+            isValid = false;
+        }
+    }
+
+    if (form.subject.length <= 3) {
+        errors.value.subject = 'Тема должна содержать более 3 символов';
+        isValid = false;
+    }
+
+    if (!form.message.trim()) {
+        errors.value.message = 'Введите текст сообщения';
+        isValid = false;
+    }
+
+    return isValid;
+};
+
+const validateAndSubmit = () => {
+    if (validateForm()) {
+        form.post(route('contact.send'), {
+            onSuccess: () => form.reset()
+        });
+    }
 };
 </script>
