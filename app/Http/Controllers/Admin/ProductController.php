@@ -40,17 +40,14 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name_ru']);
+            $data['slug'] = Str::slug($data['name']);
         }
 
-        // Загрузка основного изображения
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('products', 'public');
         }
 
-        // Загрузка галереи изображений
         if ($request->hasFile('gallery')) {
             $gallery = [];
             foreach ($request->file('gallery') as $file) {
@@ -88,14 +85,11 @@ class ProductController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name_ru']);
+            $data['slug'] = Str::slug($data['name']);
         }
 
-        // Загрузка основного изображения
         if ($request->hasFile('image')) {
-            // Удаление старого изображения
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
@@ -103,9 +97,7 @@ class ProductController extends Controller
             $data['image'] = $request->file('image')->store('products', 'public');
         }
 
-        // Загрузка галереи изображений
         if ($request->hasFile('gallery')) {
-            // Удаление старых изображений
             if ($product->gallery) {
                 foreach ($product->gallery as $image) {
                     Storage::disk('public')->delete($image);
@@ -127,7 +119,6 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        // Удаление изображений
         if ($product->image) {
             Storage::disk('public')->delete($product->image);
         }

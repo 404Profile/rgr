@@ -1,9 +1,9 @@
 <template>
-    <AdminLayout :title="`Редактирование бренда: ${brand.name_ru}`">
+    <AdminLayout :title="`Редактирование бренда: ${brand.name}`">
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div class="px-4 py-4 sm:px-0">
                 <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-2xl font-semibold text-gray-900">Редактирование бренда: {{ brand.name_ru }}</h1>
+                    <h1 class="text-2xl font-semibold text-gray-900">Редактирование бренда: {{ brand.name }}</h1>
                     <Link :href="route('admin.brands.index')" class="text-indigo-600 hover:text-indigo-900">
                         Назад к списку
                     </Link>
@@ -12,16 +12,16 @@
                 <div class="bg-white shadow-md rounded-lg p-6">
                     <form @submit.prevent="submit" enctype="multipart/form-data">
                         <div class="mb-4">
-                            <InputLabel for="name_ru" value="Название" />
+                            <InputLabel for="name" value="Название" />
                             <TextInput
-                                id="name_ru"
-                                v-model="form.name_ru"
+                                id="name"
+                                v-model="form.name"
                                 type="text"
                                 class="mt-1 block w-full"
                                 required
-                                autocomplete="name_ru"
+                                autocomplete="name"
                             />
-                            <InputError :message="form.errors.name_ru" class="mt-2" />
+                            <InputError :message="form.errors.name" class="mt-2" />
                         </div>
 
                         <div class="mb-4">
@@ -102,7 +102,7 @@ const props = defineProps({
 });
 
 const form = useForm({
-    name_ru: props.brand.name_ru,
+    name: props.brand.name,
     slug: props.brand.slug,
     description: props.brand.description || '',
     logo: null,

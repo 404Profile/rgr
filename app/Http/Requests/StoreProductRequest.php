@@ -24,11 +24,9 @@ class StoreProductRequest extends FormRequest
         return [
             'category_id' => 'required|exists:categories,id',
             'brand_id' => 'required|exists:brands,id',
-            'name_ru' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255|unique:products,slug',
-            'description_ru' => 'nullable|string',
-            'description_en' => 'nullable|string',
+            'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'image' => 'nullable|image|max:2048',
             'gallery.*' => 'nullable|image|max:2048',

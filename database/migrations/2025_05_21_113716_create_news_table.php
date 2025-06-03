@@ -10,11 +10,9 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('title_ru');
-            $table->string('title_en');
+            $table->string('title');
             $table->string('slug')->unique();
-            $table->text('content_ru');
-            $table->text('content_en');
+            $table->text('content');
             $table->string('image')->nullable();
             $table->enum('type', ['news', 'promo'])->default('news');
             $table->timestamp('published_at')->nullable();

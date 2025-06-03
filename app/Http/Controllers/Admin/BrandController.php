@@ -31,12 +31,10 @@ class BrandController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name_ru']);
+            $data['slug'] = Str::slug($data['name']);
         }
 
-        // Загрузка логотипа
         if ($request->hasFile('logo')) {
             $data['logo'] = $request->file('logo')->store('brands', 'public');
         }
@@ -64,7 +62,7 @@ class BrandController extends Controller
     public function update(Request $request, Brand $brand)
     {
         $validated = $request->validate([
-            'name_ru' => 'required|string|max:255|unique:brands,name_ru,' . $brand->id,
+            'name' => 'required|string|max:255|unique:brands,name,' . $brand->id,
             'slug' => 'nullable|string|max:255|unique:brands,slug,' . $brand->id,
             'description' => 'nullable|string',
             'logo' => 'nullable|image|max:2048',
@@ -75,7 +73,6 @@ class BrandController extends Controller
         }
 
         if ($request->hasFile('logo')) {
-            // Удаляем старый логотип, если есть
             if ($brand->logo) {
                 \Storage::disk('public')->delete($brand->logo);
             }
@@ -89,13 +86,11 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand)
     {
-        // Запрет удаления брендов с товарами
         if ($brand->products()->count() > 0) {
             return redirect()->route('admin.brands.index')
                 ->with('error', 'Невозможно удалить бренд, содержащий товары');
         }
 
-        // Удаление логотипа
         if ($brand->logo) {
             Storage::disk('public')->delete($brand->logo);
         }

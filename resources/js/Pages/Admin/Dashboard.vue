@@ -61,7 +61,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                         <tr v-for="product in lowStockProducts" :key="product.id">
-                            <td class="px-4 py-3 whitespace-nowrap">{{ product.name_ru }}</td>
+                            <td class="px-4 py-3 whitespace-nowrap">{{ product.name }}</td>
                             <td class="px-4 py-3 whitespace-nowrap">
                   <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                     {{ product.quantity }}
@@ -70,7 +70,7 @@
                             <td class="px-4 py-3 whitespace-nowrap">{{ formatCurrency(product.price) }}</td>
                             <td class="px-4 py-3 whitespace-nowrap">
                                 <Link :href="route('admin.products.edit', product.id)" class="text-indigo-600 hover:text-indigo-900">
-                                    Редактировать
+                                    {{ $t('admin.edit') }}
                                 </Link>
                             </td>
                         </tr>

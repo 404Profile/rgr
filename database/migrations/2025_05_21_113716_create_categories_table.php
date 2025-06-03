@@ -11,11 +11,9 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('parent_id')->nullable()->constrained('categories')->onDelete('set null');
-            $table->string('name_ru');
-            $table->string('name_en');
+            $table->string('name');
             $table->string('slug')->unique();
-            $table->text('description_ru')->nullable();
-            $table->text('description_en')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();

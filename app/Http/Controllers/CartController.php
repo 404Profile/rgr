@@ -33,36 +33,29 @@ class CartController extends Controller
 
         $cart = $this->getCart();
 
-        // Убедимся, что ключ 'items' существует
         if (!isset($cart['items'])) {
             $cart['items'] = [];
         }
 
-        // Проверяем, есть ли товар уже в корзине
         $existingItem = collect($cart['items'])->first(function ($item) use ($request) {
             return $item['product']['id'] == $request->product_id;
         });
 
         if ($existingItem) {
-            // Если товар уже в корзине, обновляем количество
             $this->updateItemQuantity($cart, $request->product_id, $existingItem['quantity'] + $request->quantity);
         } else {
-            // Добавляем аксессоры к продукту, если они есть
             if (method_exists($product, 'getName')) {
                 $product->append('name');
             }
 
-            // Если товар новый, добавляем его в корзину
             $cart['items'][] = [
                 'id' => uniqid(),
                 'product' => $product->toArray(),
                 'quantity' => (int)$request->quantity
             ];
 
-            // Обновляем итоговую сумму
             $this->recalculateCart($cart);
 
-            // Сохраняем корзину в сессии
             Session::put('cart', $cart);
         }
 
@@ -91,21 +84,17 @@ class CartController extends Controller
 
         $cart = $this->getCart();
 
-        // Убедимся, что ключ 'items' существует
         if (!isset($cart['items'])) {
             $cart['items'] = [];
             return back()->with('error', 'Товар не найден в корзине');
         }
 
-        // Удаляем товар из корзины
         $cart['items'] = collect($cart['items'])->filter(function ($item) use ($request) {
             return $item['product']['id'] != $request->product_id;
         })->values()->all();
 
-        // Обновляем итоговую сумму
         $this->recalculateCart($cart);
 
-        // Сохраняем корзину в сессии
         Session::put('cart', $cart);
 
         return back()->with('success', 'Товар удален из корзины');
@@ -113,7 +102,6 @@ class CartController extends Controller
 
     public function clear()
     {
-        // Очищаем корзину
         $emptyCart = [
             'items' => [],
             'total' => 0,
@@ -127,9 +115,7 @@ class CartController extends Controller
 
     private function getCart()
     {
-        // Проверяем наличие корзины в сессии
         if (!Session::has('cart')) {
-            // Инициализируем пустую корзину
             $emptyCart = [
                 'items' => [],
                 'total' => 0,
@@ -142,7 +128,6 @@ class CartController extends Controller
 
         $cart = Session::get('cart');
 
-        // Проверяем, что структура корзины корректна
         if (!isset($cart['items'])) {
             $cart['items'] = [];
         }
@@ -160,7 +145,6 @@ class CartController extends Controller
 
     private function updateItemQuantity(&$cart, $productId, $quantity)
     {
-        // Убедимся, что ключ 'items' существует
         if (!isset($cart['items'])) {
             $cart['items'] = [];
             return;
@@ -176,12 +160,9 @@ class CartController extends Controller
             }
         }
 
-        // Если товар не найден, возможно это ошибка
         if (!$found) {
-            // Можно добавить товар с указанным количеством
             $product = Product::with(['category', 'brand'])->findOrFail($productId);
 
-            // Добавляем аксессоры к продукту, если они есть
             if (method_exists($product, 'getName')) {
                 $product->append('name');
             }
@@ -193,10 +174,8 @@ class CartController extends Controller
             ];
         }
 
-        // Обновляем итоговую сумму
         $this->recalculateCart($cart);
 
-        // Сохраняем корзину в сессии
         Session::put('cart', $cart);
     }
 
@@ -205,7 +184,6 @@ class CartController extends Controller
         $total = 0;
         $totalQuantity = 0;
 
-        // Убедимся, что ключ 'items' существует
         if (!isset($cart['items'])) {
             $cart['items'] = [];
         }

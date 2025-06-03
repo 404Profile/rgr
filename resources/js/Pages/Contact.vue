@@ -3,13 +3,13 @@
 
     <MainLayout>
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold text-gray-900 text-center mb-12">Контакты</h1>
+            <h1 class="text-3xl font-bold text-gray-900 text-center mb-12">{{ $t('contacts.title') }}</h1>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Контактная информация -->
                 <div>
                     <div class="bg-white shadow-md rounded-lg p-6">
-                        <h2 class="text-xl font-semibold text-gray-900 mb-6">Наши контакты</h2>
+                        <h2 class="text-xl font-semibold text-gray-900 mb-6">{{ $t('contacts.ourContacts') }}</h2>
 
                         <div class="space-y-6">
                             <div class="flex items-start">
@@ -17,8 +17,8 @@
                                     <MapPinIcon class="h-6 w-6 text-indigo-600" />
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-base font-medium text-gray-900">Адрес</h3>
-                                    <p class="mt-1 text-gray-600">123456, г. Москва, ул. Примерная, д. 10, офис 100</p>
+                                    <h3 class="text-base font-medium text-gray-900">{{ $t('contacts.address.title') }}</h3>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.address.value') }}</p>
                                 </div>
                             </div>
 
@@ -27,9 +27,9 @@
                                     <PhoneIcon class="h-6 w-6 text-indigo-600" />
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-base font-medium text-gray-900">Телефон</h3>
-                                    <p class="mt-1 text-gray-600">+7 (123) 456-78-90</p>
-                                    <p class="mt-1 text-gray-600">+7 (987) 654-32-10</p>
+                                    <h3 class="text-base font-medium text-gray-900">{{ $t('contacts.phone.title') }}</h3>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.phone.value1') }}</p>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.phone.value2') }}</p>
                                 </div>
                             </div>
 
@@ -38,9 +38,9 @@
                                     <EnvelopeIcon class="h-6 w-6 text-indigo-600" />
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-base font-medium text-gray-900">Email</h3>
-                                    <p class="mt-1 text-gray-600">info@example.com</p>
-                                    <p class="mt-1 text-gray-600">support@example.com</p>
+                                    <h3 class="text-base font-medium text-gray-900">{{ $t('contacts.email.title') }}</h3>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.email.value1') }}</p>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.email.value2') }}</p>
                                 </div>
                             </div>
 
@@ -49,16 +49,16 @@
                                     <ClockIcon class="h-6 w-6 text-indigo-600" />
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-base font-medium text-gray-900">Время работы</h3>
-                                    <p class="mt-1 text-gray-600">Пн-Пт: 9:00 - 18:00</p>
-                                    <p class="mt-1 text-gray-600">Сб: 10:00 - 15:00</p>
-                                    <p class="mt-1 text-gray-600">Вс: выходной</p>
+                                    <h3 class="text-base font-medium text-gray-900">{{ $t('contacts.workingHours.title') }}</h3>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.workingHours.weekdays') }}</p>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.workingHours.saturday') }}</p>
+                                    <p class="mt-1 text-gray-600">{{ $t('contacts.workingHours.sunday') }}</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="mt-8">
-                            <h3 class="text-base font-medium text-gray-900 mb-4">Мы в социальных сетях</h3>
+                            <h3 class="text-base font-medium text-gray-900 mb-4">{{ $t('contacts.socialMedia.title') }}</h3>
                             <div class="flex space-x-4">
                                 <a href="#" class="text-gray-400 hover:text-indigo-600">
                                     <span class="sr-only">Facebook</span>
@@ -164,7 +164,7 @@
                                     class="w-full bg-indigo-600 hover:bg-indigo-700 text-white"
                                     :disabled="form.processing"
                                 >
-                                    Отправить
+                                    {{ $t('contacts.contactForm.submit') }}
                                 </Button>
                             </div>
                         </div>

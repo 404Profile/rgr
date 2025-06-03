@@ -14,7 +14,6 @@ class OrderController extends Controller
 {
     public function store(Request $request)
     {
-        // Валидация данных заказа
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -29,23 +28,19 @@ class OrderController extends Controller
             'notes' => 'nullable|string'
         ]);
 
-        // Получение корзины из сессии
         $cart = Session::get('cart', [
             'items' => [],
             'total' => 0,
             'total_quantity' => 0
         ]);
 
-        // Проверка, что корзина не пуста
         if (empty($cart['items'])) {
             return redirect()->route('cart.index')->with('error', 'Ваша корзина пуста');
         }
 
         try {
-            // Начинаем транзакцию
             DB::beginTransaction();
 
-            // Создаем заказ
             $order = new Order([
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
@@ -62,14 +57,12 @@ class OrderController extends Controller
                 'total' => $cart['total']
             ]);
 
-            // Если пользователь авторизован, связываем заказ с пользователем
             if (Auth::check()) {
                 $order->user_id = Auth::id();
             }
 
             $order->save();
 
-            // Добавляем товары в заказ
             foreach ($cart['items'] as $item) {
                 OrderItem::create([
                     'order_id' => $order->id,
@@ -79,24 +72,19 @@ class OrderController extends Controller
                 ]);
             }
 
-            // Очищаем корзину
             Session::put('cart', [
                 'items' => [],
                 'total' => 0,
                 'total_quantity' => 0
             ]);
 
-            // Завершаем транзакцию
             DB::commit();
 
-            // Перенаправляем на страницу подтверждения заказа
             return redirect()->route('orders.success', $order->id)->with('success', 'Заказ успешно оформлен');
 
         } catch (\Exception $e) {
-            // Откатываем транзакцию в случае ошибки
             DB::rollback();
 
-            // Возвращаем ошибку
             return back()->withErrors(['general' => 'Произошла ошибка при оформлении заказа: ' . $e->getMessage()]);
         }
     }
@@ -105,7 +93,6 @@ class OrderController extends Controller
     {
         $query = Order::with('items.product');
 
-        // Если пользователь авторизован, проверяем, что заказ принадлежит этому пользователю
         if (Auth::check()) {
             $query->where(function($q) {
                 $q->where('user_id', Auth::id())
@@ -120,7 +107,6 @@ class OrderController extends Controller
         ]);
     }
 
-    // Метод для отображения списка заказов (для админа)
     public function index()
     {
         if (!Auth::user()->hasRole('admin')) {
@@ -136,7 +122,6 @@ class OrderController extends Controller
         ]);
     }
 
-    // Метод для отображения деталей заказа (для админа)
     public function show($id)
     {
         if (!Auth::user()->hasRole('admin')) {
@@ -151,7 +136,6 @@ class OrderController extends Controller
         ]);
     }
 
-    // Метод для обновления статуса заказа (для админа)
     public function updateStatus(Request $request, $id)
     {
         if (!Auth::user()->hasRole('admin')) {

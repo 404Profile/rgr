@@ -12,13 +12,11 @@ return new class extends Migration
             $table->id();
             $table->string('phone');
             $table->string('email');
-            $table->text('address_ru');
-            $table->text('address_en');
+            $table->text('address');
             $table->string('map_latitude')->nullable();
             $table->string('map_longitude')->nullable();
-            $table->json('social_links')->nullable(); // массив ссылок
-            $table->string('working_hours_ru')->nullable();
-            $table->string('working_hours_en')->nullable();
+            $table->json('social_links')->nullable();
+            $table->string('working_hours')->nullable();
             $table->timestamps();
         });
     }

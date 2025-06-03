@@ -23,16 +23,14 @@ class UpdateNewsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title_ru' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'slug' => [
                 'nullable',
                 'string',
                 'max:255',
                 Rule::unique('news')->ignore($this->news)
             ],
-            'content_ru' => 'required|string',
-            'content_en' => 'required|string',
+            'content' => 'required|string',
             'image' => 'nullable|image|max:2048',
             'type' => 'required|in:news,promo',
             'published_at' => 'nullable|date',

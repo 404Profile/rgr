@@ -23,16 +23,14 @@ class UpdateBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ru' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'slug' => [
                 'nullable',
                 'string',
                 'max:255',
                 Rule::unique('brands')->ignore($this->brand)
             ],
-            'description_ru' => 'nullable|string',
-            'description_en' => 'nullable|string',
+            'description' => 'nullable|string',
             'logo' => 'nullable|image|max:2048',
             'active' => 'boolean',
         ];

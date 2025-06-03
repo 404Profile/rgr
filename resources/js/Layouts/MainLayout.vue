@@ -15,22 +15,25 @@
                         <!-- Навигационные ссылки -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <NavLink :href="route('catalog.index')" :active="route().current('catalog.index')">
-                                Каталог
+                                {{ $t('navigation.catalog') }}
                             </NavLink>
                             <NavLink :href="route('about')" :active="route().current('about')">
-                                О нас
+                                {{ $t('navigation.about') }}
                             </NavLink>
                             <NavLink :href="route('contact.index')" :active="route().current('contact.index')">
-                                Контакты
+                                {{ $t('navigation.contacts') }}
                             </NavLink>
                             <NavLink :href="route('news.index')" :active="route().current('news.*')">
-                                Новости
+                                {{ $t('navigation.news') }}
                             </NavLink>
                         </div>
                     </div>
 
                     <!-- Правая часть навигации -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6 space-x-4">
+                        <!-- Селектор языка -->
+                        <LanguageSelector />
+
                         <!-- Корзина -->
                         <Link :href="route('cart.index')" class="relative px-3 py-2">
                             <ShoppingCartIcon class="h-6 w-6 text-gray-600 hover:text-indigo-600" />
@@ -131,7 +134,7 @@
                         Контакты
                     </ResponsiveNavLink>
                     <ResponsiveNavLink :href="route('news.index')" :active="route().current('news.*')">
-                        Новости
+                        Новости и акции
                     </ResponsiveNavLink>
                     <ResponsiveNavLink :href="route('cart.index')" :active="route().current('cart.index')">
                         Корзина
@@ -267,6 +270,7 @@ import {
 
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import LanguageSelector from "@/Components/Lang/LanguageSelector.vue";
 
 const mobileMenuOpen = ref(false);
 const userDropdownOpen = ref(false);

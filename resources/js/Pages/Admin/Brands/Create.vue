@@ -12,16 +12,16 @@
                 <div class="bg-white shadow-md rounded-lg p-6">
                     <form @submit.prevent="submit" enctype="multipart/form-data">
                         <div class="mb-4">
-                            <InputLabel for="name_ru" value="Название" />
+                            <InputLabel for="name" value="Название" />
                             <TextInput
-                                id="name_ru"
-                                v-model="form.name_ru"
+                                id="name"
+                                v-model="form.name"
                                 type="text"
                                 class="mt-1 block w-full"
                                 required
-                                autocomplete="name_ru"
+                                autocomplete="name"
                             />
-                            <InputError :message="form.errors.name_ru" class="mt-2" />
+                            <InputError :message="form.errors.name" class="mt-2" />
                         </div>
 
                         <div class="mb-4">
@@ -95,7 +95,7 @@ import TextInput from '@/Components/TextInput.vue';
 import Textarea from '@/Components/Textarea.vue';
 
 const form = useForm({
-    name_ru: '',
+    name: '',
     slug: '',
     description: '',
     logo: null,

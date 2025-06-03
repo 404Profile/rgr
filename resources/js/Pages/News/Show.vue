@@ -1,5 +1,5 @@
 <template>
-    <Head :title="article.title_ru" />
+    <Head :title="article.title" />
 
     <MainLayout>
         <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -23,7 +23,7 @@
                         </svg>
                     </li>
                     <li>
-                        <span class="text-gray-900 font-medium">{{ article.title_ru }}</span>
+                        <span class="text-gray-900 font-medium">{{ article.title }}</span>
                     </li>
                 </ol>
             </nav>
@@ -32,7 +32,7 @@
                 <div v-if="article.image" class="aspect-w-16 aspect-h-9">
                     <img
                         :src="`/storage/${article.image}`"
-                        :alt="article.title_ru"
+                        :alt="article.title"
                         class="w-full h-full object-cover object-center"
                     >
                 </div>
@@ -41,10 +41,10 @@
                         <CalendarIcon class="h-5 w-5 mr-1" />
                         <span>{{ formatDate(article.created_at) }}</span>
                     </div>
-                    <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ article.title_ru }}</h1>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ article.title }}</h1>
 
                     <article class="prose prose-indigo prose-lg max-w-none">
-                        <div v-html="article.content_ru"></div>
+                        <div v-html="article.content"></div>
                     </article>
 
                     <div class="mt-8 pt-8 border-t border-gray-200">
@@ -97,8 +97,8 @@
                                     <span>{{ formatDate(article.created_at) }}</span>
                                 </p>
                                 <Link :href="route('news.show', article.slug)" class="mt-2 block">
-                                    <p class="text-lg font-semibold text-gray-900">{{ article.title_ru }}</p>
-                                    <p class="mt-3 text-sm text-gray-500 line-clamp-3">{{ article.summary_ru }}</p>
+                                    <p class="text-lg font-semibold text-gray-900">{{ article.title }}</p>
+                                    <p class="mt-3 text-sm text-gray-500 line-clamp-3">{{ article.summary }}</p>
                                 </Link>
                             </div>
                             <div class="mt-4">

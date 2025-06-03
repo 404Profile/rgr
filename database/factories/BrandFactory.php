@@ -12,15 +12,12 @@ class BrandFactory extends Factory
 
     public function definition(): array
     {
-        $name_en = $this->faker->company();
-        $name_ru = $name_en;
+        $name = $this->faker->company();
 
         return [
-            'name_ru' => $name_ru,
-            'name_en' => $name_en,
-            'slug' => Str::slug($name_en),
-            'description_ru' => $this->faker->paragraph(),
-            'description_en' => $this->faker->paragraph(),
+            'name' => $name,
+            'slug' => Str::slug($name),
+            'description' => $this->faker->paragraph(),
             'logo' => null,
             'active' => true,
         ];

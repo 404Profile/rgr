@@ -1,5 +1,5 @@
 <template>
-    <Head :title="product.name_ru" />
+    <Head :title="product.name" />
 
     <MainLayout>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
@@ -27,7 +27,7 @@
                             :href="route('catalog.category', { slug: product.category.slug })"
                             class="text-gray-500 hover:text-gray-700"
                         >
-                            {{ product.category.name_ru }}
+                            {{ product.category.name }}
                         </Link>
                     </li>
                     <li>
@@ -36,7 +36,7 @@
                         </svg>
                     </li>
                     <li>
-                        <span class="text-gray-900 font-medium">{{ product.name_ru }}</span>
+                        <span class="text-gray-900 font-medium">{{ product.name }}</span>
                     </li>
                 </ol>
             </nav>
@@ -47,7 +47,7 @@
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
                         <img
                             :src="product.image ? `/storage/${product.image}` : '/images/placeholder.jpg'"
-                            :alt="product.name_ru"
+                            :alt="product.name"
                             class="w-full h-auto object-cover"
                         >
                     </div>
@@ -59,7 +59,7 @@
                         >
                             <img
                                 :src="`/storage/${image}`"
-                                :alt="`${product.name_ru} - изображение ${index + 1}`"
+                                :alt="`${product.name} - изображение ${index + 1}`"
                                 class="w-full h-24 object-cover"
                             >
                         </div>
@@ -69,7 +69,7 @@
                 <!-- Информация о товаре -->
                 <div>
                     <div class="bg-white rounded-lg shadow-md p-6">
-                        <h1 class="text-2xl font-bold text-gray-900">{{ product.name_ru }}</h1>
+                        <h1 class="text-2xl font-bold text-gray-900">{{ product.name }}</h1>
 
                         <div class="mt-4 flex items-center">
                             <div class="flex items-center">
@@ -174,7 +174,7 @@
                                 <div v-if="product.category" class="flex">
                                     <span class="font-medium w-32">Категория:</span>
                                     <Link :href="route('catalog.category', { slug: product.category.slug })" class="text-indigo-600 hover:text-indigo-700">
-                                        {{ product.category.name_ru }}
+                                        {{ product.category.name }}
                                     </Link>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
             <div class="mt-8">
                 <div class="bg-white shadow-md rounded-lg p-6">
                     <h2 class="text-xl font-semibold text-gray-900 mb-4">Описание</h2>
-                    <div class="prose max-w-none" v-html="product.description_ru"></div>
+                    <div class="prose max-w-none" v-html="product.description"></div>
                 </div>
             </div>
 
@@ -328,7 +328,7 @@
                             <div class="aspect-w-1 aspect-h-1 rounded-lg bg-gray-200 overflow-hidden">
                                 <img
                                     :src="relatedProduct.image ? `/storage/${relatedProduct.image}` : '/images/placeholder.jpg'"
-                                    :alt="relatedProduct.name_ru"
+                                    :alt="relatedProduct.name"
                                     class="object-center object-cover group-hover:opacity-75 transition-opacity"
                                 >
                             </div>
@@ -337,12 +337,12 @@
                                     <h3 class="text-sm text-gray-700">
                                         <Link :href="route('product.show', relatedProduct.slug)">
                                             <span aria-hidden="true" class="absolute inset-0"></span>
-                                            {{ relatedProduct.name_ru }}
+                                            {{ relatedProduct.name }}
                                         </Link>
                                     </h3>
                                     <p class="text-sm font-medium text-gray-900">{{ formatCurrency(relatedProduct.price) }}</p>
                                 </div>
-                                <p class="mt-1 text-sm text-gray-500">{{ relatedProduct.category.name_ru }}</p>
+                                <p class="mt-1 text-sm text-gray-500">{{ relatedProduct.category.name }}</p>
                             </div>
                         </div>
                     </div>

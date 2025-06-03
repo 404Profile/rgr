@@ -15,7 +15,7 @@
                                     <div class="flex-shrink-0 w-full sm:w-24 h-24 mb-4 sm:mb-0">
                                         <img
                                             :src="item.product.image ? `/storage/${item.product.image}` : '/images/placeholder.jpg'"
-                                            :alt="item.product.name_ru"
+                                            :alt="item.product.name"
                                             class="w-full h-full object-cover rounded-md"
                                         >
                                     </div>
@@ -24,7 +24,7 @@
                                             <div>
                                                 <h3 class="text-base font-medium text-gray-900">
                                                     <Link :href="route('product.show', item.product.slug)" class="hover:text-indigo-600">
-                                                        {{ item.product.name_ru }}
+                                                        {{ item.product.name }}
                                                     </Link>
                                                 </h3>
                                                 <p class="mt-1 text-sm text-gray-500">{{ formatCurrency(item.price) }}</p>

@@ -32,16 +32,14 @@ class UpdateCategoryRequest extends FormRequest
                     }
                 },
             ],
-            'name_ru' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'slug' => [
                 'nullable',
                 'string',
                 'max:255',
                 Rule::unique('categories')->ignore($this->category)
             ],
-            'description_ru' => 'nullable|string',
-            'description_en' => 'nullable|string',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'active' => 'boolean',
         ];

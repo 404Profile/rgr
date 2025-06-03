@@ -15,7 +15,6 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::orderBy('id', 'desc')->paginate(15);
-
         return Inertia::render('Admin/News/Index', [
             'news' => $news
         ]);
@@ -30,12 +29,10 @@ class NewsController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title_ru']);
+            $data['slug'] = Str::slug($data['title']);
         }
 
-        // Загрузка изображения
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('news', 'public');
         }
@@ -64,14 +61,11 @@ class NewsController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title_ru']);
+            $data['slug'] = Str::slug($data['title']);
         }
 
-        // Загрузка изображения
         if ($request->hasFile('image')) {
-            // Удаление старого изображения
             if ($news->image) {
                 Storage::disk('public')->delete($news->image);
             }
@@ -87,7 +81,6 @@ class NewsController extends Controller
 
     public function destroy(News $news)
     {
-        // Удаление изображения
         if ($news->image) {
             Storage::disk('public')->delete($news->image);
         }

@@ -12,31 +12,22 @@ class PageSeeder extends Seeder
     {
         $pages = [
             [
-                'title_ru' => 'Условия использования',
-                'title_en' => 'Terms of Use',
+                'title' => 'Условия использования',
                 'slug' => 'terms',
-                'content_ru' => '<h2>Условия использования</h2><p>Текст условий использования...</p>',
-                'content_en' => '<h2>Terms of Use</h2><p>Terms of use text...</p>',
-                'meta_description_ru' => 'Условия использования нашего сайта',
-                'meta_description_en' => 'Terms of use for our website',
+                'content' => '<h2>Условия использования</h2><p>Текст условий использования...</p>',
+                'meta_description' => 'Условия использования нашего сайта',
             ],
             [
-                'title_ru' => 'Политика конфиденциальности',
-                'title_en' => 'Privacy Policy',
+                'title' => 'Политика конфиденциальности',
                 'slug' => 'privacy',
-                'content_ru' => '<h2>Политика конфиденциальности</h2><p>Текст политики конфиденциальности...</p>',
-                'content_en' => '<h2>Privacy Policy</h2><p>Privacy policy text...</p>',
-                'meta_description_ru' => 'Политика конфиденциальности нашего сайта',
-                'meta_description_en' => 'Privacy policy for our website',
+                'content' => '<h2>Политика конфиденциальности</h2><p>Текст политики конфиденциальности...</p>',
+                'meta_description' => 'Политика конфиденциальности нашего сайта',
             ],
             [
-                'title_ru' => 'Доставка и оплата',
-                'title_en' => 'Shipping and Payment',
+                'title' => 'Доставка и оплата',
                 'slug' => 'shipping',
-                'content_ru' => '<h2>Доставка и оплата</h2><p>Информация о доставке и оплате...</p>',
-                'content_en' => '<h2>Shipping and Payment</h2><p>Shipping and payment information...</p>',
-                'meta_description_ru' => 'Информация о доставке и оплате',
-                'meta_description_en' => 'Information about shipping and payment',
+                'content' => '<h2>Доставка и оплата</h2><p>Информация о доставке и оплате...</p>',
+                'meta_description' => 'Информация о доставке и оплате',
             ],
         ];
 

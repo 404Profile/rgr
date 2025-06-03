@@ -30,8 +30,8 @@
                                 <PhotoIcon class="h-6 w-6" />
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ category.name_ru }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ category.parent?.name_ru || '-' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ category.name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ category.parent?.name || '-' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ category.slug }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                 <span :class="[
@@ -44,10 +44,10 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                             <div class="flex space-x-2">
                                 <Link :href="route('admin.categories.edit', category.id)" class="text-indigo-600 hover:text-indigo-900">
-                                    Редактировать
+                                    {{ $t('admin.edit') }}
                                 </Link>
                                 <button @click="confirmDelete(category)" class="text-red-600 hover:text-red-900">
-                                    Удалить
+                                    {{ $t('admin.delete') }}
                                 </button>
                             </div>
                         </td>
@@ -65,7 +65,7 @@
         <DeleteModal
             v-if="categoryToDelete"
             :open="!!categoryToDelete"
-            :title="`Удалить категорию '${categoryToDelete.name_ru}'?`"
+            :title="`Удалить категорию '${categoryToDelete.name}'?`"
             :message="'Это действие нельзя отменить. Все связанные товары останутся без категории.'"
             @confirm="deleteCategory"
             @cancel="categoryToDelete = null"

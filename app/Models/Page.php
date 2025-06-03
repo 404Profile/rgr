@@ -11,31 +11,10 @@ class Page extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title_ru',
-        'title_en',
+        'title',
         'slug',
-        'content_ru',
-        'content_en',
-        'meta_description_ru',
-        'meta_description_en',
+        'content',
+        'meta_description',
         'active',
     ];
-
-    public function getTitleAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"title_$locale"};
-    }
-
-    public function getContentAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"content_$locale"};
-    }
-
-    public function getMetaDescriptionAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"meta_description_$locale"};
-    }
 }

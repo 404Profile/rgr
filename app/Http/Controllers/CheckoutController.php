@@ -11,10 +11,8 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        // Получаем корзину из сессии
         $cart = $this->getCart();
 
-        // Если корзина пуста, перенаправляем в корзину
         if (empty($cart['items'])) {
             return redirect()->route('cart.index')->with('error', 'Ваша корзина пуста');
         }
@@ -28,9 +26,7 @@ class CheckoutController extends Controller
 
     private function getCart()
     {
-        // Проверяем наличие корзины в сессии
         if (!Session::has('cart')) {
-            // Инициализируем пустую корзину
             $emptyCart = [
                 'items' => [],
                 'total' => 0,
@@ -44,7 +40,6 @@ class CheckoutController extends Controller
 
         $cart = Session::get('cart');
 
-        // Проверяем, что структура корзины корректна
         if (!isset($cart['items'])) {
             $cart['items'] = [];
         }

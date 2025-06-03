@@ -32,9 +32,9 @@
                                 <PhotoIcon class="h-6 w-6" />
                             </div>
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ product.name_ru }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ product.category?.name_ru || '-' }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ product.brand?.name_ru || '-' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ product.name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ product.category?.name || '-' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ product.brand?.name || '-' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ formatCurrency(product.price) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                 <span :class="[
@@ -55,10 +55,10 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                             <div class="flex space-x-2">
                                 <Link :href="route('admin.products.edit', product.id)" class="text-indigo-600 hover:text-indigo-900">
-                                    Редактировать
+                                    {{ $t('admin.edit') }}
                                 </Link>
                                 <button @click="confirmDelete(product)" class="text-red-600 hover:text-red-900">
-                                    Удалить
+                                    {{ $t('admin.delete') }}
                                 </button>
                             </div>
                         </td>
@@ -76,7 +76,7 @@
         <DeleteModal
             v-if="productToDelete"
             :open="!!productToDelete"
-            :title="`Удалить товар '${productToDelete.name_ru}'?`"
+            :title="`Удалить товар '${productToDelete.name}'?`"
             :message="'Это действие нельзя отменить.'"
             @confirm="deleteProduct"
             @cancel="productToDelete = null"

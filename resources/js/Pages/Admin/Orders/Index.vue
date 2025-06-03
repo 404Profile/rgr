@@ -34,10 +34,10 @@
                                     Просмотр
                                 </Link>
                                 <Link :href="route('admin.orders.edit', order.id)" class="text-indigo-600 hover:text-indigo-900">
-                                    Редактировать
+                                    {{ $t('admin.edit') }}
                                 </Link>
                                 <button @click="confirmDelete(order)" class="text-red-600 hover:text-red-900">
-                                    Удалить
+                                    {{ $t('admin.delete') }}
                                 </button>
                             </div>
                         </td>

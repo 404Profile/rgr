@@ -5,7 +5,7 @@
                 <div class="flex justify-between items-center mb-6">
                     <h1 class="text-2xl font-semibold text-gray-900">Страницы</h1>
                     <Link :href="route('admin.pages.create')" class="px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700">
-                        Добавить страницу
+                        {{ $t('admin.addPage') }}
                     </Link>
                 </div>
 
@@ -27,15 +27,15 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                         <tr v-for="page in pages.data" :key="page.id">
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ page.id }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ page.title_ru ?? page.title_en }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ page.title }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ page.slug }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-3">
                                     <Link :href="route('admin.pages.edit', page.id)" class="text-indigo-600 hover:text-indigo-900">
-                                        Редактировать
+                                        {{ $t('admin.edit') }}
                                     </Link>
                                     <button @click="confirmDelete(page.id)" class="text-red-600 hover:text-red-900">
-                                        Удалить
+                                        {{ $t('admin.delete') }}
                                     </button>
                                 </div>
                             </td>

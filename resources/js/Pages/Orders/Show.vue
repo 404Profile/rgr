@@ -88,7 +88,7 @@
                                     </div>
                                     <div class="ml-4">
                                         <div class="text-sm font-medium text-gray-900">
-                                            {{ item.product?.name_ru || item.product_name || 'Товар удален' }}
+                                            {{ item.product?.name || item.product_name || 'Товар удален' }}
                                         </div>
                                         <div v-if="item.product" class="text-sm text-gray-500">
                                             <Link :href="route('product.show', item.product.slug)" class="text-indigo-600 hover:text-indigo-900">

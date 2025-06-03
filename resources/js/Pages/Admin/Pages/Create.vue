@@ -12,27 +12,15 @@
                 <form @submit.prevent="submit">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <InputLabel for="title_ru" value="Заголовок (RU)" />
+                            <InputLabel for="title" value="Заголовок" />
                             <TextInput
-                                id="title_ru"
-                                v-model="form.title_ru"
+                                id="title"
+                                v-model="form.title"
                                 type="text"
                                 class="mt-1 block w-full"
                                 required
                             />
-                            <InputError :message="form.errors.title_ru" class="mt-2" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="title_en" value="Заголовок (EN)" />
-                            <TextInput
-                                id="title_en"
-                                v-model="form.title_en"
-                                type="text"
-                                class="mt-1 block w-full"
-                                required
-                            />
-                            <InputError :message="form.errors.title_en" class="mt-2" />
+                            <InputError :message="form.errors.title" class="mt-2" />
                         </div>
                     </div>
 
@@ -59,67 +47,35 @@
                     </div>
 
                     <div class="mb-6">
-                        <InputLabel for="content_ru" value="Содержание (RU)" />
+                        <InputLabel for="content" value="Содержание" />
                         <RichEditor
-                            id="content_ru"
-                            v-model="form.content_ru"
+                            id="content"
+                            v-model="form.content"
                             class="mt-1"
                         />
-                        <InputError :message="form.errors.content_ru" class="mt-2" />
+                        <InputError :message="form.errors.content" class="mt-2" />
                     </div>
 
                     <div class="mb-6">
-                        <InputLabel for="content_en" value="Содержание (EN)" />
-                        <RichEditor
-                            id="content_en"
-                            v-model="form.content_en"
-                            class="mt-1"
-                        />
-                        <InputError :message="form.errors.content_en" class="mt-2" />
-                    </div>
-
-                    <div class="mb-6">
-                        <InputLabel for="meta_title_ru" value="Meta заголовок (RU)" />
+                        <InputLabel for="meta_title" value="Meta заголовок" />
                         <TextInput
-                            id="meta_title_ru"
-                            v-model="form.meta_title_ru"
+                            id="meta_title"
+                            v-model="form.meta_title"
                             type="text"
                             class="mt-1 block w-full"
                         />
-                        <InputError :message="form.errors.meta_title_ru" class="mt-2" />
+                        <InputError :message="form.errors.meta_title" class="mt-2" />
                     </div>
 
                     <div class="mb-6">
-                        <InputLabel for="meta_description_ru" value="Meta описание (RU)" />
+                        <InputLabel for="meta_description" value="Meta описание" />
                         <Textarea
-                            id="meta_description_ru"
-                            v-model="form.meta_description_ru"
+                            id="meta_description"
+                            v-model="form.meta_description"
                             class="mt-1 block w-full"
                             rows="2"
                         />
-                        <InputError :message="form.errors.meta_description_ru" class="mt-2" />
-                    </div>
-
-                    <div class="mb-6">
-                        <InputLabel for="meta_title_en" value="Meta заголовок (EN)" />
-                        <TextInput
-                            id="meta_title_en"
-                            v-model="form.meta_title_en"
-                            type="text"
-                            class="mt-1 block w-full"
-                        />
-                        <InputError :message="form.errors.meta_title_en" class="mt-2" />
-                    </div>
-
-                    <div class="mb-6">
-                        <InputLabel for="meta_description_en" value="Meta описание (EN)" />
-                        <Textarea
-                            id="meta_description_en"
-                            v-model="form.meta_description_en"
-                            class="mt-1 block w-full"
-                            rows="2"
-                        />
-                        <InputError :message="form.errors.meta_description_en" class="mt-2" />
+                        <InputError :message="form.errors.meta_description" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end">
@@ -159,15 +115,11 @@ import Textarea from '@/Components/Textarea.vue';
 import RichEditor from '@/Components/RichEditor.vue';
 
 const form = useForm({
-    title_ru: '',
-    title_en: '',
+    title: '',
     slug: '',
-    content_ru: '',
-    content_en: '',
-    meta_title_ru: '',
-    meta_description_ru: '',
-    meta_title_en: '',
-    meta_description_en: '',
+    content: '',
+    meta_title: '',
+    meta_description: '',
     active: true,
 });
 

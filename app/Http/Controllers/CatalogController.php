@@ -37,8 +37,7 @@ class CatalogController extends Controller
     {
         $category = Category::where('slug', $slug)
             ->where('active', true)
-            ->firstOrFail()
-            ->append(['name', 'description']); // Добавляем аксессоры
+            ->firstOrFail();
 
         $categoryIds = [$category->id];
         if ($category->children()->count() > 0) {
@@ -69,8 +68,7 @@ class CatalogController extends Controller
     {
         $brand = Brand::where('slug', $slug)
             ->where('active', true)
-            ->firstOrFail()
-            ->append(['name', 'description']); // Добавляем аксессоры
+            ->firstOrFail();
 
         $query = Product::where('brand_id', $brand->id)->with(['category', 'brand'])->where('active', true);
 
@@ -105,7 +103,7 @@ class CatalogController extends Controller
             ->inRandomOrder()
             ->take(4)
             ->get();
-
+//dd($product, $relatedProducts);
         return Inertia::render('Catalog/Show', [
             'product' => $product,
             'relatedProducts' => $relatedProducts
@@ -114,22 +112,18 @@ class CatalogController extends Controller
 
     private function applyFilters(Request $request, $query)
     {
-        // Фильтр по брендам
         if ($request->has('brands') && !empty($request->brands)) {
             $query->whereIn('brand_id', $request->brands);
         }
 
-        // Фильтр по цене (минимум)
         if ($request->has('price_min') && !empty($request->price_min)) {
             $query->where('price', '>=', $request->price_min);
         }
 
-        // Фильтр по цене (максимум)
         if ($request->has('price_max') && !empty($request->price_max)) {
             $query->where('price', '<=', $request->price_max);
         }
 
-        // Сортировка
         if ($request->has('sort')) {
             switch ($request->sort) {
                 case 'price_asc':
@@ -139,10 +133,10 @@ class CatalogController extends Controller
                     $query->orderBy('price', 'desc');
                     break;
                 case 'name_asc':
-                    $query->orderBy('name_ru', 'asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'name_desc':
-                    $query->orderBy('name_ru', 'desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 case 'newest':
                 default:
@@ -156,7 +150,6 @@ class CatalogController extends Controller
         return $query;
     }
 
-    // Получение категорий с количеством товаров
     private function getCategoriesWithCounts()
     {
         $categories = Category::where('parent_id', null)
@@ -170,30 +163,18 @@ class CatalogController extends Controller
                         $query->where('active', true);
                     }]);
             }])
-            ->get()
-            ->append(['name']); // Добавляем аксессор name
-
-        // Добавляем name для детей категорий
-        $categories->each(function ($category) {
-            if ($category->children) {
-                $category->children->each(function ($child) {
-                    $child->append(['name']);
-                });
-            }
-        });
+            ->get();
 
         return $categories;
     }
 
-    // Получение брендов с количеством товаров
     private function getBrandsWithCounts()
     {
         $brands = Brand::where('active', true)
             ->withCount(['products' => function ($query) {
                 $query->where('active', true);
             }])
-            ->get()
-            ->append(['name']); // Добавляем аксессор name
+            ->get();
 
         return $brands;
     }

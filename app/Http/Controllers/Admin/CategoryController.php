@@ -36,12 +36,10 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name_ru']);
+            $data['slug'] = Str::slug($data['name']);
         }
 
-        // Загрузка изображения
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('categories', 'public');
         }
@@ -75,14 +73,11 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name_ru']);
+            $data['slug'] = Str::slug($data['name']);
         }
 
-        // Загрузка изображения
         if ($request->hasFile('image')) {
-            // Удаление старого изображения
             if ($category->image) {
                 Storage::disk('public')->delete($category->image);
             }
@@ -98,13 +93,11 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        // Запрет удаления категорий с товарами
         if ($category->products()->count() > 0) {
             return redirect()->route('admin.categories.index')
                 ->with('error', 'Невозможно удалить категорию, содержащую товары');
         }
 
-        // Удаление изображения
         if ($category->image) {
             Storage::disk('public')->delete($category->image);
         }

@@ -30,15 +30,15 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ contact.phone }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ contact.email }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {{ truncateText(contact.address_ru, 50) }}
+                            {{ truncateText(contact.address, 50) }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex space-x-3">
                                 <Link :href="route('admin.contacts.edit', contact.id)" class="text-indigo-600 hover:text-indigo-900">
-                                    Редактировать
+                                    {{ $t('admin.edit') }}
                                 </Link>
                                 <button @click="confirmDelete(contact.id)" class="text-red-600 hover:text-red-900">
-                                    Удалить
+                                    {{ $t('admin.delete') }}
                                 </button>
                             </div>
                         </td>

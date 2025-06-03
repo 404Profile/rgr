@@ -1,13 +1,13 @@
 <template>
-    <Head :title="page.title_ru" />
+    <Head :title="page.title" />
 
     <MainLayout>
         <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="bg-white shadow-md rounded-lg p-8">
-                <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ page.title_ru }}</h1>
+                <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ page.title }}</h1>
 
                 <article class="prose prose-indigo prose-lg max-w-none">
-                    <div v-if="page.content_ru" v-html="page.content_ru"></div>
+                    <div v-if="page.content" v-html="page.content"></div>
                     <p v-else>Содержимое отсутствует.</p>
                 </article>
             </div>

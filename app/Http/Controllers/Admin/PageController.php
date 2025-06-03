@@ -29,9 +29,8 @@ class PageController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title_ru']);
+            $data['slug'] = Str::slug($data['title']);
         }
 
         Page::create($data);
@@ -58,9 +57,8 @@ class PageController extends Controller
     {
         $data = $request->validated();
 
-        // Генерация slug, если он не указан
         if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title_ru']);
+            $data['slug'] = Str::slug($data['title']);
         }
 
         $page->update($data);

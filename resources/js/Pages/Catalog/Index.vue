@@ -1,5 +1,5 @@
 <template>
-    <Head title="Каталог товаров" />
+    <Head :title="$t('catalog.title')" />
 
     <MainLayout>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
@@ -7,7 +7,7 @@
                 <!-- Боковая панель с фильтрами -->
                 <div class="lg:w-64 flex-shrink-0">
                     <div class="bg-white shadow-md rounded-lg p-6 sticky top-6">
-                        <h2 class="text-lg font-semibold mb-4">Категории</h2>
+                        <h2 class="text-lg font-semibold mb-4">{{ $t('catalog.categories') }}</h2>
                         <ul class="space-y-2">
                             <li v-for="category in categories" :key="category.id">
                                 <Link
@@ -17,7 +17,7 @@
                     selectedCategory === category.slug ? 'text-indigo-600 font-medium' : 'text-gray-700'
                   ]"
                                 >
-                                    {{ category.name_ru }}
+                                    {{ category.name }}
                                     <span class="text-gray-400 ml-1">({{ category.products_count }})</span>
                                 </Link>
                                 <ul v-if="category.children && category.children.length" class="ml-4 mt-2 space-y-2">
@@ -29,7 +29,7 @@
                         selectedCategory === child.slug ? 'text-indigo-600 font-medium' : 'text-gray-700'
                       ]"
                                         >
-                                            {{ child.name_ru }}
+                                            {{ child.name }}
                                             <span class="text-gray-400 ml-1">({{ child.products_count }})</span>
                                         </Link>
                                     </li>
@@ -39,7 +39,7 @@
 
                         <div class="border-t border-gray-200 my-6"></div>
 
-                        <h2 class="text-lg font-semibold mb-4">Бренды</h2>
+                        <h2 class="text-lg font-semibold mb-4">{{ $t('catalog.brands') }}</h2>
                         <div class="space-y-2">
                             <div v-for="brand in brands" :key="brand.id" class="flex items-center">
                                 <input
@@ -58,10 +58,10 @@
 
                         <div class="border-t border-gray-200 my-6"></div>
 
-                        <h2 class="text-lg font-semibold mb-4">Цена</h2>
+                        <h2 class="text-lg font-semibold mb-4">{{ $t('catalog.price') }}</h2>
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label for="price_min" class="block text-sm text-gray-700">От</label>
+                                <label for="price_min" class="block text-sm text-gray-700">{{ $t('catalog.from') }}</label>
                                 <TextInput
                                     id="price_min"
                                     v-model="filters.price_min"
@@ -72,7 +72,7 @@
                                 />
                             </div>
                             <div>
-                                <label for="price_max" class="block text-sm text-gray-700">До</label>
+                                <label for="price_max" class="block text-sm text-gray-700">{{ $t('catalog.to') }}</label>
                                 <TextInput
                                     id="price_max"
                                     v-model="filters.price_max"
@@ -90,7 +90,7 @@
                             @click="resetFilters"
                             class="w-full py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50"
                         >
-                            Сбросить фильтры
+                            {{ $t('catalog.resetFilters') }}
                         </button>
                     </div>
                 </div>
@@ -100,21 +100,21 @@
                     <div class="bg-white shadow-md rounded-lg p-6 mb-6">
                         <div class="flex justify-between items-center">
                             <h1 class="text-2xl font-semibold text-gray-900">
-                                {{ currentCategory ? currentCategory.name_ru : 'Все товары' }}
+                                {{ currentCategory ? currentCategory.name : $t('catalog.allProducts') }}
                             </h1>
                             <div class="flex items-center">
-                                <label for="sort" class="text-sm text-gray-700 mr-2">Сортировать по:</label>
+                                <label for="sort" class="text-sm text-gray-700 mr-2">{{ $t('catalog.sortBy') }}</label>
                                 <select
                                     id="sort"
                                     v-model="filters.sort"
                                     class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm text-sm"
                                     @change="applyFilters"
                                 >
-                                    <option value="newest">Новые поступления</option>
-                                    <option value="price_asc">Цена: по возрастанию</option>
-                                    <option value="price_desc">Цена: по убыванию</option>
-                                    <option value="name_asc">Название: А-Я</option>
-                                    <option value="name_desc">Название: Я-А</option>
+                                    <option value="newest">{{ $t('catalog.sort.newest') }}</option>
+                                    <option value="price_asc">{{ $t('catalog.sort.priceAsc') }}</option>
+                                    <option value="price_desc">{{ $t('catalog.sort.priceDesc') }}</option>
+                                    <option value="name_asc">{{ $t('catalog.sort.nameAsc') }}</option>
+                                    <option value="name_desc">{{ $t('catalog.sort.nameDesc') }}</option>
                                 </select>
                             </div>
                         </div>
@@ -126,24 +126,24 @@
                             <div class="aspect-w-1 aspect-h-1 w-full">
                                     <img
                                         :src="product.image ? `/storage/${product.image}` : '/images/placeholder.jpg'"
-                                        :alt="product.name_ru"
+                                        :alt="product.name"
                                         class="object-cover object-center w-full h-full"
                                     >
                                 </div>
                             </Link>
                             <div class="p-4">
                                 <div class="mb-2">
-                                    <span class="text-xs text-gray-500">{{ product.category.name_ru }}</span>
+                                    <span class="text-xs text-gray-500">{{ product.category.name }}</span>
                                 </div>
                                 <Link :href="route('catalog.show', product.slug)" class="block">
-                                    <h3 class="text-lg font-medium text-gray-900 hover:text-indigo-600">{{ product.name_ru }}</h3>
+                                    <h3 class="text-lg font-medium text-gray-900 hover:text-indigo-600">{{ product.name }}</h3>
                                 </Link>
                                 <div class="mt-2 flex justify-between items-center">
                                     <p class="text-xl font-bold text-gray-900">{{ formatCurrency(product.price) }}</p>
                                     <button
                                         @click="addToCart(product)"
                                         class="flex items-center justify-center p-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700"
-                                        aria-label="Добавить в корзину"
+                                        :aria-label="$t('catalog.addToCart')"
                                     >
                                         <ShoppingCartIcon class="h-5 w-5" />
                                     </button>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div v-else class="bg-white shadow-md rounded-lg p-6 text-center">
-                        <p class="text-gray-600">Товары не найдены. Попробуйте изменить параметры фильтрации.</p>
+                        <p class="text-gray-600">{{ $t('catalog.noProductsFound') }}</p>
                     </div>
 
                     <Pagination :links="products.links" class="mt-6" />
@@ -169,6 +169,9 @@ import { ShoppingCartIcon } from '@heroicons/vue/24/outline';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Pagination from '@/Components/Pagination.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
     products: Object,

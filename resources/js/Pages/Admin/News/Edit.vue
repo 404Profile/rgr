@@ -1,8 +1,8 @@
 <template>
-    <AdminLayout :title="`Редактирование новости: ${news.title_ru}`">
+    <AdminLayout :title="`Редактирование новости: ${news.title}`">
         <div class="py-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-semibold text-gray-900">Редактирование новости: {{ news.title_ru }}</h1>
+                <h1 class="text-2xl font-semibold text-gray-900">Редактирование новости: {{ news.title }}</h1>
                 <Link :href="route('admin.news.index')" class="text-indigo-600 hover:text-indigo-900">
                     Назад к списку
                 </Link>
@@ -13,28 +13,15 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Заголовок (RU) -->
                         <div>
-                            <InputLabel for="title_ru" value="Заголовок (RU)" />
+                            <InputLabel for="title" value="Заголовок" />
                             <TextInput
-                                id="title_ru"
-                                v-model="form.title_ru"
+                                id="title"
+                                v-model="form.title"
                                 type="text"
                                 class="mt-1 block w-full"
                                 required
                             />
-                            <InputError :message="form.errors.title_ru" class="mt-2" />
-                        </div>
-
-                        <!-- Заголовок (EN) -->
-                        <div>
-                            <InputLabel for="title_en" value="Заголовок (EN)" />
-                            <TextInput
-                                id="title_en"
-                                v-model="form.title_en"
-                                type="text"
-                                class="mt-1 block w-full"
-                                required
-                            />
-                            <InputError :message="form.errors.title_en" class="mt-2" />
+                            <InputError :message="form.errors.title" class="mt-2" />
                         </div>
 
                         <!-- Slug -->
@@ -110,34 +97,18 @@
 
                     <!-- Содержание (RU) -->
                     <div class="mt-6">
-                        <InputLabel for="content_ru" value="Содержание (RU)" />
+                        <InputLabel for="content" value="Содержание" />
                         <QuillEditor
-                            id="content_ru"
-                            :content="form.content_ru"
-                            @update:content="form.content_ru = $event"
+                            id="content"
+                            :content="form.content"
+                            @update:content="form.content = $event"
                             theme="snow"
                             :options="editorOptions"
                             class="mt-1 block w-full"
                             style="height: 300px"
                             contentType="html"
                         />
-                        <InputError :message="form.errors.content_ru" class="mt-2" />
-                    </div>
-
-                    <!-- Содержание (EN) -->
-                    <div class="mt-6">
-                        <InputLabel for="content_en" value="Содержание (EN)" />
-                        <QuillEditor
-                            id="content_en"
-                            :content="form.content_en"
-                            @update:content="form.content_en = $event"
-                            theme="snow"
-                            :options="editorOptions"
-                            class="mt-1 block w-full"
-                            style="height: 300px"
-                            contentType="html"
-                        />
-                        <InputError :message="form.errors.content_en" class="mt-2" />
+                        <InputError :message="form.errors.content" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-end mt-6">
@@ -210,15 +181,13 @@ const formatDateForInput = (dateString) => {
 
 // Форма для редактирования новости
 const form = useForm({
-    title_ru: props.news.title_ru,
-    title_en: props.news.title_en,
+    title: props.news.title,
     slug: props.news.slug,
-    content_ru: props.news.content_ru,
-    content_en: props.news.content_en,
+    content: props.news.content,
     image: null,
     type: props.news.type,
     published_at: formatDateForInput(props.news.published_at),
-    active: props.news.active,
+    active: Boolean(props.news.active),
     _method: 'PUT',
 });
 

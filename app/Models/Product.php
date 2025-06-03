@@ -13,11 +13,9 @@ class Product extends Model
     protected $fillable = [
         'category_id',
         'brand_id',
-        'name_ru',
-        'name_en',
+        'name',
         'slug',
-        'description_ru',
-        'description_en',
+        'description',
         'price',
         'image',
         'gallery',
@@ -25,8 +23,6 @@ class Product extends Model
         'quantity',
         'active',
     ];
-
-    protected $appends = ['name'];
 
     protected $casts = [
         'gallery' => 'array',
@@ -46,17 +42,5 @@ class Product extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
-    }
-
-    public function getNameAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"name_$locale"};
-    }
-
-    public function getDescriptionAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"description_$locale"};
     }
 }

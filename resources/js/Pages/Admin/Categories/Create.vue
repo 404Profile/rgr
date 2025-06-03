@@ -12,27 +12,15 @@
         <form @submit.prevent="submit">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
-              <InputLabel for="name_ru" value="Название (RU)" />
+              <InputLabel for="name" value="Название" />
               <TextInput
-                id="name_ru"
-                v-model="form.name_ru"
+                id="name"
+                v-model="form.name"
                 type="text"
                 class="mt-1 block w-full"
                 required
               />
-              <InputError :message="form.errors.name_ru" class="mt-2" />
-            </div>
-
-            <div>
-              <InputLabel for="name_en" value="Название (EN)" />
-              <TextInput
-                id="name_en"
-                v-model="form.name_en"
-                type="text"
-                class="mt-1 block w-full"
-                required
-              />
-              <InputError :message="form.errors.name_en" class="mt-2" />
+              <InputError :message="form.errors.name" class="mt-2" />
             </div>
           </div>
 
@@ -45,7 +33,7 @@
             >
               <option :value="null">Нет (корневая категория)</option>
               <option v-for="category in categories" :key="category.id" :value="category.id">
-                {{ category.name_ru }}
+                {{ category.name }}
               </option>
             </SelectInput>
             <InputError :message="form.errors.parent_id" class="mt-2" />
@@ -76,7 +64,7 @@
               Рекомендуемый размер: 800x800px, JPG или PNG
             </div>
             <InputError :message="form.errors.image" class="mt-2" />
-            
+
             <div v-if="form.image" class="mt-2">
               <img :src="previewImage" class="h-32 w-32 object-cover rounded-md" alt="Image Preview" />
             </div>
@@ -91,25 +79,14 @@
           </div>
 
           <div class="mb-6">
-            <InputLabel for="description_ru" value="Описание (RU)" />
+            <InputLabel for="description" value="Описание" />
             <Textarea
-              id="description_ru"
-              v-model="form.description_ru"
+              id="description"
+              v-model="form.description"
               class="mt-1 block w-full"
               rows="4"
             />
-            <InputError :message="form.errors.description_ru" class="mt-2" />
-          </div>
-
-          <div class="mb-6">
-            <InputLabel for="description_en" value="Описание (EN)" />
-            <Textarea
-              id="description_en"
-              v-model="form.description_en"
-              class="mt-1 block w-full"
-              rows="4"
-            />
-            <InputError :message="form.errors.description_en" class="mt-2" />
+            <InputError :message="form.errors.description" class="mt-2" />
           </div>
 
           <div class="flex items-center justify-end">
@@ -155,14 +132,12 @@ const props = defineProps({
 });
 
 const form = useForm({
-  name_ru: '',
-  name_en: '',
+  name: '',
   slug: '',
   parent_id: null,
   image: null,
   active: true,
-  description_ru: '',
-  description_en: '',
+  description: '',
 });
 
 const previewImage = computed(() => {

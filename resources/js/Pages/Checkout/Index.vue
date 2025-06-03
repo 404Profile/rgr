@@ -168,7 +168,7 @@
     <div class="divide-y divide-gray-200">
         <div v-for="item in cart.items" :key="item.id" class="py-3 flex justify-between">
             <div class="flex-1">
-                <p class="text-sm font-medium text-gray-900">{{ item.product.name_ru }}</p>
+                <p class="text-sm font-medium text-gray-900">{{ item.product.name }}</p>
                 <p class="text-sm text-gray-500">{{ item.quantity }} x {{ formatCurrency(item.price) }}</p>
             </div>
             <p class="text-sm font-medium text-gray-900">{{ formatCurrency(item.price * item.quantity) }}</p>

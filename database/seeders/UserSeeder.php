@@ -13,19 +13,14 @@ class UserSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'role' => 'admin',
-        ]);
-
-        User::factory()->create([
-            'name' => 'Manager User',
-            'email' => 'manager@example.com',
-            'role' => 'manager',
-            'permissions' => ['products', 'orders', 'customers', 'news'],
+            'password' => bcrypt('admin123'),
         ]);
 
         User::factory()->create([
             'name' => 'Regular User',
             'email' => 'user@example.com',
             'role' => 'user',
+            'password' => bcrypt('user123'),
         ]);
 
         User::factory(10)->create();

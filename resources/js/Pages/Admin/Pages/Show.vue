@@ -1,11 +1,11 @@
 <template>
-    <AdminLayout :title="`Просмотр страницы: ${page.title_ru}`">
+    <AdminLayout :title="`Просмотр страницы: ${page.title}`">
         <div class="max-w-3xl mx-auto">
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-semibold">{{ page.title_ru }}</h1>
+                <h1 class="text-2xl font-semibold">{{ page.title }}</h1>
                 <div class="flex gap-2">
                     <Link :href="route('admin.pages.edit', page.id)" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                        Редактировать
+                        {{ $t('admin.edit') }}
                     </Link>
                     <Link :href="route('admin.pages.index')" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
                         Назад к списку
@@ -36,11 +36,7 @@
                         </div>
                         <div>
                             <p class="text-sm text-gray-600">Заголовок (RU)</p>
-                            <p class="font-medium">{{ page.title_ru }}</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-600">Заголовок (EN)</p>
-                            <p class="font-medium">{{ page.title_en }}</p>
+                            <p class="font-medium">{{ page.title }}</p>
                         </div>
                         <div>
                             <p class="text-sm text-gray-600">Дата создания</p>
@@ -54,14 +50,8 @@
                 </div>
 
                 <div class="bg-white shadow-md rounded-lg p-6">
-                    <h2 class="text-lg font-semibold mb-4">Содержание (RU)</h2>
-                    <div v-if="page.content_ru" class="prose max-w-none" v-html="page.content_ru"></div>
-                    <div v-else class="text-gray-500">Содержание отсутствует</div>
-                </div>
-
-                <div class="bg-white shadow-md rounded-lg p-6">
-                    <h2 class="text-lg font-semibold mb-4">Содержание (EN)</h2>
-                    <div v-if="page.content_en" class="prose max-w-none" v-html="page.content_en"></div>
+                    <h2 class="text-lg font-semibold mb-4">Содержание</h2>
+                    <div v-if="page.content" class="prose max-w-none" v-html="page.content"></div>
                     <div v-else class="text-gray-500">Содержание отсутствует</div>
                 </div>
 
@@ -72,22 +62,11 @@
                             <h3 class="font-medium mb-2">RU:</h3>
                             <div class="mb-2">
                                 <p class="text-sm text-gray-600">Title</p>
-                                <p class="font-medium">{{ page.meta_title_ru || 'Не указан' }}</p>
+                                <p class="font-medium">{{ page.meta_title || 'Не указан' }}</p>
                             </div>
                             <div>
                                 <p class="text-sm text-gray-600">Description</p>
-                                <p class="font-medium">{{ page.meta_description_ru || 'Не указан' }}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="font-medium mb-2">EN:</h3>
-                            <div class="mb-2">
-                                <p class="text-sm text-gray-600">Title</p>
-                                <p class="font-medium">{{ page.meta_title_en || 'Не указан' }}</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-600">Description</p>
-                                <p class="font-medium">{{ page.meta_description_en || 'Не указан' }}</p>
+                                <p class="font-medium">{{ page.meta_description || 'Не указан' }}</p>
                             </div>
                         </div>
                     </div>

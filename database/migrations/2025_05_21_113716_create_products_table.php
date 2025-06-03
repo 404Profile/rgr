@@ -12,15 +12,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('brand_id')->constrained()->onDelete('cascade');
-            $table->string('name_ru');
-            $table->string('name_en');
+            $table->string('name');
             $table->string('slug')->unique();
-            $table->text('description_ru')->nullable();
-            $table->text('description_en')->nullable();
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
             $table->string('image')->nullable();
-            $table->json('gallery')->nullable(); // массив изображений
-            $table->json('specifications')->nullable(); // характеристики товара
+            $table->json('gallery')->nullable();
+            $table->json('specifications')->nullable();
             $table->integer('quantity')->default(0);
             $table->boolean('active')->default(true);
             $table->timestamps();

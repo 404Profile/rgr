@@ -47,12 +47,12 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-3">
                                     <Link :href="route('admin.users.edit', user.id)" class="text-indigo-600 hover:text-indigo-900">
-                                        Редактировать
+                                        {{ $t('admin.edit') }}
                                     </Link>
                                     <button @click="confirmDelete(user.id, user.id === $page.props.auth.user.id)"
                                             class="text-red-600 hover:text-red-900"
                                             :class="{ 'opacity-50 cursor-not-allowed': user.id === $page.props.auth.user.id }">
-                                        Удалить
+                                        {{ $t('admin.delete') }}
                                     </button>
                                 </div>
                             </td>

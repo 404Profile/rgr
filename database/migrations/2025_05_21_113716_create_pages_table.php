@@ -10,13 +10,10 @@ return new class extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
-            $table->string('title_ru');
-            $table->string('title_en');
+            $table->string('title');
             $table->string('slug')->unique();
-            $table->text('content_ru');
-            $table->text('content_en');
-            $table->string('meta_description_ru')->nullable();
-            $table->string('meta_description_en')->nullable();
+            $table->text('content');
+            $table->string('meta_description')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

@@ -31,15 +31,15 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <img v-if="brand.logo" :src="`/storage/${brand.logo}`" alt="" class="h-10 w-10 object-contain">
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ brand.name_ru }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ brand.name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ brand.slug }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-3">
                                     <Link :href="route('admin.brands.edit', brand.id)" class="text-indigo-600 hover:text-indigo-900">
-                                        Редактировать
+                                        {{ $t('admin.edit') }}
                                     </Link>
                                     <button @click="confirmDelete(brand.id)" class="text-red-600 hover:text-red-900">
-                                        Удалить
+                                        {{ $t('admin.delete') }}
                                     </button>
                                 </div>
                             </td>

@@ -13,28 +13,14 @@ class Contact extends Model
     protected $fillable = [
         'phone',
         'email',
-        'address_ru',
-        'address_en',
+        'address',
         'map_latitude',
         'map_longitude',
         'social_links',
-        'working_hours_ru',
-        'working_hours_en',
+        'working_hours',
     ];
 
     protected $casts = [
         'social_links' => 'array',
     ];
-
-    public function getAddressAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"address_$locale"};
-    }
-
-    public function getWorkingHoursAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"working_hours_$locale"};
-    }
 }

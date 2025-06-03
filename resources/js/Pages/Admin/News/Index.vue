@@ -37,7 +37,7 @@
                             <span v-else class="text-gray-400">Нет изображения</span>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {{ item.title_ru }}
+                            {{ item.title }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 <span :class="{
@@ -61,10 +61,10 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex space-x-3">
                                 <Link :href="route('admin.news.edit', item.id)" class="text-indigo-600 hover:text-indigo-900">
-                                    Редактировать
+                                    {{ $t('admin.edit') }}
                                 </Link>
                                 <button @click="confirmDelete(item.id)" class="text-red-600 hover:text-red-900">
-                                    Удалить
+                                    {{ $t('admin.delete') }}
                                 </button>
                             </div>
                         </td>

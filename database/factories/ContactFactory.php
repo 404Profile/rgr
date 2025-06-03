@@ -14,8 +14,7 @@ class ContactFactory extends Factory
         return [
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->companyEmail(),
-            'address_ru' => $this->faker->address(),
-            'address_en' => $this->faker->address(),
+            'address' => $this->faker->address(),
             'map_latitude' => $this->faker->latitude(),
             'map_longitude' => $this->faker->longitude(),
             'social_links' => [
@@ -24,8 +23,7 @@ class ContactFactory extends Factory
                 'twitter' => 'https://twitter.com/',
                 'youtube' => 'https://youtube.com/'
             ],
-            'working_hours_ru' => 'Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00, Вс: выходной',
-            'working_hours_en' => 'Mon-Fri: 9:00 - 18:00, Sat: 10:00 - 16:00, Sun: closed',
+            'working_hours' => 'Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00, Вс: выходной',
         ];
     }
 }

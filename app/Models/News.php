@@ -11,11 +11,9 @@ class News extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title_ru',
-        'title_en',
+        'title',
         'slug',
-        'content_ru',
-        'content_en',
+        'content',
         'image',
         'type',
         'published_at',
@@ -25,18 +23,6 @@ class News extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
-
-    public function getTitleAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"title_$locale"};
-    }
-
-    public function getContentAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"content_$locale"};
-    }
 
     public function scopePublished($query)
     {

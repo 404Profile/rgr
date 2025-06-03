@@ -28,8 +28,6 @@ class ContactController extends Controller
             'message' => 'required|string',
         ]);
 
-//        Mail::to(config('mail.from.address'))->send(new ContactFormMail($request->all()));
-
         return redirect()->back()->with('success', 'Сообщение успешно отправлено');
     }
 }

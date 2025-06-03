@@ -20,7 +20,7 @@
                     @click="$emit('confirm')"
                     class="bg-red-600 hover:bg-red-700"
                 >
-                    Удалить
+                    {{ $t('admin.delete') }}
                 </Button>
             </div>
         </div>

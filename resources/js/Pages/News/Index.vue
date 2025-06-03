@@ -3,7 +3,7 @@
 
     <MainLayout>
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold text-gray-900 mb-8">Новости</h1>
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">{{ $t('admin.news') }}</h1>
 
             <div v-if="news.data && news.data.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div v-for="article in news.data" :key="article.id" class="flex flex-col overflow-hidden rounded-lg shadow-lg">
@@ -20,8 +20,8 @@
                                 <span>{{ formatDate(article.created_at) }}</span>
                             </p>
                             <Link :href="route('news.show', article.slug)" class="mt-2 block">
-                                <p class="text-xl font-semibold text-gray-900">{{ article.title_ru }}</p>
-                                <p class="mt-3 text-base text-gray-500">{{ article.summary_ru }}</p>
+                                <p class="text-xl font-semibold text-gray-900">{{ article.title }}</p>
+                                <p class="mt-3 text-base text-gray-500">{{ article.summary }}</p>
                             </Link>
                         </div>
                         <div class="mt-6">

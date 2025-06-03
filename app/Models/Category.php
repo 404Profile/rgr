@@ -13,16 +13,12 @@ class Category extends Model
 
     protected $fillable = [
         'parent_id',
-        'name_ru',
-        'name_en',
+        'name',
         'slug',
-        'description_ru',
-        'description_en',
+        'description',
         'image',
         'active',
     ];
-
-    protected $appends = ['name', 'description'];
 
     protected static function boot()
     {
@@ -30,7 +26,7 @@ class Category extends Model
 
         static::creating(function ($category) {
             if (!$category->slug) {
-                $category->slug = static::createUniqueSlug($category->name_ru ?: $category->name_en);
+                $category->slug = static::createUniqueSlug($category->name);
             } else {
                 $category->slug = static::createUniqueSlug($category->slug);
             }
@@ -64,17 +60,5 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
-    }
-
-    public function getNameAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"name_$locale"};
-    }
-
-    public function getDescriptionAttribute()
-    {
-        $locale = App::getLocale();
-        return $this->{"description_$locale"};
     }
 }

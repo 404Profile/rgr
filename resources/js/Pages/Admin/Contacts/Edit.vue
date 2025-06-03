@@ -39,28 +39,15 @@
 
                         <!-- Адрес (RU) -->
                         <div class="md:col-span-2">
-                            <InputLabel for="address_ru" value="Адрес (RU)" />
+                            <InputLabel for="address" value="Адрес" />
                             <Textarea
-                                id="address_ru"
-                                v-model="form.address_ru"
+                                id="address"
+                                v-model="form.address"
                                 class="mt-1 block w-full"
                                 rows="3"
                                 required
                             />
-                            <InputError :message="form.errors.address_ru" class="mt-2" />
-                        </div>
-
-                        <!-- Адрес (EN) -->
-                        <div class="md:col-span-2">
-                            <InputLabel for="address_en" value="Адрес (EN)" />
-                            <Textarea
-                                id="address_en"
-                                v-model="form.address_en"
-                                class="mt-1 block w-full"
-                                rows="3"
-                                required
-                            />
-                            <InputError :message="form.errors.address_en" class="mt-2" />
+                            <InputError :message="form.errors.address" class="mt-2" />
                         </div>
 
                         <!-- Координаты карты -->
@@ -90,28 +77,15 @@
 
                         <!-- Часы работы (RU) -->
                         <div>
-                            <InputLabel for="working_hours_ru" value="Часы работы (RU)" />
+                            <InputLabel for="working_hours" value="Часы работы" />
                             <TextInput
-                                id="working_hours_ru"
-                                v-model="form.working_hours_ru"
+                                id="working_hours"
+                                v-model="form.working_hours"
                                 type="text"
                                 class="mt-1 block w-full"
                                 placeholder="Например: Пн-Пт: 9:00-18:00"
                             />
-                            <InputError :message="form.errors.working_hours_ru" class="mt-2" />
-                        </div>
-
-                        <!-- Часы работы (EN) -->
-                        <div>
-                            <InputLabel for="working_hours_en" value="Часы работы (EN)" />
-                            <TextInput
-                                id="working_hours_en"
-                                v-model="form.working_hours_en"
-                                type="text"
-                                class="mt-1 block w-full"
-                                placeholder="Например: Mon-Fri: 9:00-18:00"
-                            />
-                            <InputError :message="form.errors.working_hours_en" class="mt-2" />
+                            <InputError :message="form.errors.working_hours" class="mt-2" />
                         </div>
                     </div>
 
@@ -218,12 +192,10 @@ onMounted(() => {
 const form = useForm({
     phone: props.contact?.phone || '',
     email: props.contact?.email || '',
-    address_ru: props.contact?.address_ru || '',
-    address_en: props.contact?.address_en || '',
+    address: props.contact?.address || '',
     map_latitude: props.contact?.map_latitude || '',
     map_longitude: props.contact?.map_longitude || '',
-    working_hours_ru: props.contact?.working_hours_ru || '',
-    working_hours_en: props.contact?.working_hours_en || '',
+    working_hours: props.contact?.working_hours || '',
     social_links: props.contact?.social_links || {},
 });
 

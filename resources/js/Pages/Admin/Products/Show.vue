@@ -1,11 +1,11 @@
 <template>
-    <AdminLayout :title="`Просмотр товара: ${product.name_ru}`">
+    <AdminLayout :title="`Просмотр товара: ${product.name}`">
         <div class="max-w-5xl mx-auto">
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-semibold">{{ product.name_ru }}</h1>
+                <h1 class="text-2xl font-semibold">{{ product.name }}</h1>
                 <div class="flex gap-2">
                     <Link :href="route('admin.products.edit', product.id)" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
-                        Редактировать
+                        {{ $t('admin.edit') }}
                     </Link>
                     <Link :href="route('admin.products.index')" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
                         Назад к списку
@@ -50,23 +50,18 @@
                             </div>
 
                             <div>
-                                <h2 class="text-sm font-medium text-gray-500">Название (RU)</h2>
-                                <p>{{ product.name_ru }}</p>
-                            </div>
-
-                            <div>
-                                <h2 class="text-sm font-medium text-gray-500">Название (EN)</h2>
-                                <p>{{ product.name_en }}</p>
+                                <h2 class="text-sm font-medium text-gray-500">Название</h2>
+                                <p>{{ product.name }}</p>
                             </div>
 
                             <div>
                                 <h2 class="text-sm font-medium text-gray-500">Категория</h2>
-                                <p>{{ product.category?.name_ru || '-' }}</p>
+                                <p>{{ product.category?.name || '-' }}</p>
                             </div>
 
                             <div>
                                 <h2 class="text-sm font-medium text-gray-500">Бренд</h2>
-                                <p>{{ product.brand?.name_ru || '-' }}</p>
+                                <p>{{ product.brand?.name || '-' }}</p>
                             </div>
 
                             <div>
@@ -118,14 +113,8 @@
                         </div>
 
                         <div class="mb-6">
-                            <h2 class="text-lg font-semibold mb-2">Описание (RU)</h2>
-                            <div v-if="product.description_ru" class="prose max-w-none border rounded-lg p-4 bg-gray-50" v-html="product.description_ru"></div>
-                            <div v-else class="border rounded-lg p-4 bg-gray-50 text-gray-400">Описание отсутствует</div>
-                        </div>
-
-                        <div class="mb-6">
-                            <h2 class="text-lg font-semibold mb-2">Описание (EN)</h2>
-                            <div v-if="product.description_en" class="prose max-w-none border rounded-lg p-4 bg-gray-50" v-html="product.description_en"></div>
+                            <h2 class="text-lg font-semibold mb-2">Описание</h2>
+                            <div v-if="product.description" class="prose max-w-none border rounded-lg p-4 bg-gray-50" v-html="product.description_ru"></div>
                             <div v-else class="border rounded-lg p-4 bg-gray-50 text-gray-400">Описание отсутствует</div>
                         </div>
                     </div>

@@ -129,7 +129,7 @@
                         </Link>
                         <div class="p-4">
                             <div class="mb-2">
-                                <span class="text-xs text-gray-500">{{ relatedProduct.category.name }}</span>
+                                <span class="text-xs text-gray-500">{{ relatedProduct?.category?.name }}</span>
                             </div>
                             <Link :href="route('catalog.show', relatedProduct.slug)" class="block">
                                 <h3 class="text-lg font-medium text-gray-900 hover:text-indigo-600">{{ relatedProduct.name }}</h3>
