@@ -10,7 +10,8 @@
     "profile": "Профиль",
     "myOrders": "Мои заказы",
     "adminPanel": "Панель администратора",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "home": "Главная"
   },
   "admin": {
     "dashboard": "Панель управления",
@@ -62,7 +63,14 @@
     "promoType": "Акция",
     "confirmDelete": "Вы уверены, что хотите удалить эту страницу?",
     "confirmDeleteNews": "Вы уверены, что хотите удалить эту новость?",
-    "editorPlaceholder": "Введите содержание..."
+    "editorPlaceholder": "Введите содержание...",
+    "contactManagement": "Управление контактами",
+    "contactInformation": "Контактная информация",
+    "addNewContact": "Добавить новый контакт",
+    "addressRu": "Адрес (RU)",
+    "noContactInfo": "Контактная информация не настроена.",
+    "addContactInfo": "Добавить контактную информацию",
+    "confirmDeleteContact": "Вы уверены, что хотите удалить этот контакт?"
   },
   "home": {
     "title": "Главная",
@@ -222,6 +230,7 @@
       "email": "Ваш email",
       "phone": "Ваш телефон",
       "message": "Сообщение",
+      "theme": "Тема",
       "submit": "Отправить",
       "requiredField": "Это поле обязательно для заполнения",
       "invalidEmail": "Пожалуйста, введите корректный email"
@@ -247,5 +256,11 @@
   "language": {
     "ru": "Русский",
     "en": "English"
+  },
+  "news": {
+    "title": "Новости",
+    "readMore": "Читать далее",
+    "noNewsYet": "На данный момент новостей нет.",
+    "backToNews": "Назад к новостям"
   }
 }

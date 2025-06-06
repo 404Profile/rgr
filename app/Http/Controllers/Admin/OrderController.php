@@ -41,17 +41,13 @@ class OrderController extends Controller
 
         $validated = $request->validate([
             'status' => 'required|string',
-            'is_paid' => 'required|boolean',
-            'full_name' => 'nullable|string|max:255',
+            'first_name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:500',
             'notes' => 'nullable|string|max:1000',
         ]);
-
-        if (is_string($validated['is_paid'])) {
-            $validated['is_paid'] = $validated['is_paid'] === 'true';
-        }
 
         $order->update($validated);
 

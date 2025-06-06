@@ -39,8 +39,8 @@
                                 </div>
                                 <div class="ml-3">
                                     <h3 class="text-base font-medium text-gray-900">{{ $t('contacts.email.title') }}</h3>
-                                    <p class="mt-1 text-gray-600">{{ $t('contacts.email.value1') }}</p>
-                                    <p class="mt-1 text-gray-600">{{ $t('contacts.email.value2') }}</p>
+                                    <p class="mt-1 text-gray-600">info@example.com</p>
+                                    <p class="mt-1 text-gray-600">support@example.com</p>
                                 </div>
                             </div>
 
@@ -91,7 +91,7 @@
 
                 <!-- Форма обратной связи -->
                 <div class="bg-white shadow-md rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-900 mb-6">Напишите нам</h2>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-6">{{ $t('contacts.contactForm.title') }}</h2>
 
                     <div v-if="status" class="mb-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700">
                         {{ status }}
@@ -100,7 +100,7 @@
                     <form @submit.prevent="validateAndSubmit">
                         <div class="grid grid-cols-1 gap-6">
                             <div>
-                                <InputLabel for="name" value="Имя" />
+                                <InputLabel for="name" :value="$t('contacts.contactForm.name')" />
                                 <TextInput
                                     id="name"
                                     v-model="form.name"
@@ -124,7 +124,7 @@
                             </div>
 
                             <div>
-                                <InputLabel for="phone" value="Телефон" />
+                                <InputLabel for="phone" :value="$t('contacts.contactForm.phone')" />
                                 <TextInput
                                     id="phone"
                                     v-model="form.phone"
@@ -135,7 +135,7 @@
                             </div>
 
                             <div>
-                                <InputLabel for="subject" value="Тема" />
+                                <InputLabel for="subject" :value="$t('contacts.contactForm.theme')" />
                                 <TextInput
                                     id="subject"
                                     v-model="form.subject"
@@ -147,7 +147,7 @@
                             </div>
 
                             <div>
-                                <InputLabel for="message" value="Сообщение" />
+                                <InputLabel for="message" :value="$t('contacts.contactForm.message')" />
                                 <Textarea
                                     id="message"
                                     v-model="form.message"

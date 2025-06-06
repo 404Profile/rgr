@@ -114,7 +114,7 @@
 
                         <div class="mb-6">
                             <h2 class="text-lg font-semibold mb-2">Описание</h2>
-                            <div v-if="product.description" class="prose max-w-none border rounded-lg p-4 bg-gray-50" v-html="product.description_ru"></div>
+                            <div v-if="product.description" class="prose max-w-none border rounded-lg p-4 bg-gray-50" v-html="product.description"></div>
                             <div v-else class="border rounded-lg p-4 bg-gray-50 text-gray-400">Описание отсутствует</div>
                         </div>
                     </div>

@@ -10,7 +10,8 @@
     "profile": "Profile",
     "myOrders": "My Orders",
     "adminPanel": "Admin Panel",
-    "logout": "Logout"
+    "logout": "Logout",
+    "home": "Home"
   },
   "admin": {
     "dashboard": "Dashboard",
@@ -62,7 +63,14 @@
     "promoType": "Promotion",
     "confirmDelete": "Are you sure you want to delete this page?",
     "confirmDeleteNews": "Are you sure you want to delete this news?",
-    "editorPlaceholder": "Enter content..."
+    "editorPlaceholder": "Enter content...",
+    "contactManagement": "Contact Management",
+    "contactInformation": "Contact Information",
+    "addNewContact": "Add New Contact",
+    "addressRu": "Address (RU)",
+    "noContactInfo": "Contact information is not configured.",
+    "addContactInfo": "Add contact information",
+    "confirmDeleteContact": "Are you sure you want to delete this contact?"
   },
   "home": {
     "title": "Home",
@@ -223,6 +231,7 @@
       "phone": "Your phone",
       "message": "Message",
       "submit": "Send",
+      "theme": "Theme",
       "requiredField": "This field is required",
       "invalidEmail": "Please enter a valid email"
     }
@@ -247,5 +256,11 @@
   "language": {
     "ru": "Русский",
     "en": "English"
+  },
+  "news": {
+    "title": "News",
+    "readMore": "Read more",
+    "noNewsYet": "There are no news at the moment.",
+    "backToNews": "Back to news"
   }
 }

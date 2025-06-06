@@ -45,45 +45,50 @@
                         </div>
                     </div>
 
-                    <!-- Правая часть навигации -->
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <div class="relative" ref="userDropdownContainer">
-                            <button
-                                @click="userDropdownOpen = !userDropdownOpen"
-                                class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out"
-                            >
-                                <div>{{ $page.props.auth.user.name }}</div>
-                                <div class="ml-1">
-                                    <ChevronDownIcon
-                                        class="w-4 h-4 fill-current"
-                                        :class="{'rotate-180': userDropdownOpen}"
-                                    />
-                                </div>
-                            </button>
 
-                            <!-- Выпадающее меню -->
-                            <div
-                                v-show="userDropdownOpen"
-                                class="absolute right-0 mt-2 w-48 py-1 bg-white rounded-md shadow-lg z-10"
-                            >
-                                <Link
-                                    :href="route('profile.edit')"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                >
-                                    Профиль
-                                </Link>
-                                <Link
-                                    :href="route('dashboard')"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                >
-                                    Сайт
-                                </Link>
+                    <!-- Правая часть навигации -->
+                    <div class="sm:flex sm:items-center sm:ml-6">
+                        <LanguageSelector />
+
+                        <div class="hidden sm:flex sm:items-center sm:ml-6">
+                            <div class="relative" ref="userDropdownContainer">
                                 <button
-                                    @click="logout"
-                                    class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    @click="userDropdownOpen = !userDropdownOpen"
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out"
                                 >
-                                    Выйти
+                                    <div>{{ $page.props.auth.user.name }}</div>
+                                    <div class="ml-1">
+                                        <ChevronDownIcon
+                                            class="w-4 h-4 fill-current"
+                                            :class="{'rotate-180': userDropdownOpen}"
+                                        />
+                                    </div>
                                 </button>
+
+                                <!-- Выпадающее меню -->
+                                <div
+                                    v-show="userDropdownOpen"
+                                    class="absolute right-0 mt-2 w-48 py-1 bg-white rounded-md shadow-lg z-10"
+                                >
+                                    <Link
+                                        :href="route('profile.edit')"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Профиль
+                                    </Link>
+                                    <Link
+                                        :href="route('dashboard')"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Сайт
+                                    </Link>
+                                    <button
+                                        @click="logout"
+                                        class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Выйти
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -193,6 +198,7 @@ import {
 
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import LanguageSelector from "@/Components/Lang/LanguageSelector.vue";
 
 defineProps({
     title: {

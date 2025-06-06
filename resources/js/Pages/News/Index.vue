@@ -1,5 +1,5 @@
 <template>
-    <Head title="Новости" />
+    <Head :title="$t('news.title')" />
 
     <MainLayout>
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -26,14 +26,14 @@
                         </div>
                         <div class="mt-6">
                             <Link :href="route('news.show', article.slug)" class="text-base font-semibold text-indigo-600 hover:text-indigo-500">
-                                Читать далее
+                                {{ $t('news.readMore') }}
                             </Link>
                         </div>
                     </div>
                 </div>
             </div>
             <div v-else class="text-center py-12">
-                <p class="text-gray-500">На данный момент новостей нет.</p>
+                <p class="text-gray-500">{{ $t('news.noNewsYet') }}</p>
             </div>
 
             <Pagination :links="news.links" class="mt-8" />

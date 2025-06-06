@@ -12,60 +12,25 @@
                 <form @submit.prevent="submit">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <InputLabel for="status" value="Статус заказа" />
-                            <SelectInput
-                                id="status"
-                                v-model="form.status"
-                                class="mt-1 block w-full"
-                                required
-                            >
-                                <option value="pending">Ожидает обработки</option>
-                                <option value="processing">В обработке</option>
-                                <option value="shipped">Отправлен</option>
-                                <option value="delivered">Доставлен</option>
-                                <option value="completed">Завершен</option>
-                                <option value="cancelled">Отменен</option>
-                                <option value="refunded">Возвращен</option>
-                            </SelectInput>
-                            <InputError :message="form.errors.status" class="mt-2" />
-                        </div>
-
-                        <div>
-                            <InputLabel for="is_paid" value="Статус оплаты" />
-                            <SelectInput
-                                id="is_paid"
-                                v-model="form.is_paid"
-                                class="mt-1 block w-full"
-                                required
-                            >
-                                <option :value="false">Не оплачен</option>
-                                <option :value="true">Оплачен</option>
-                            </SelectInput>
-                            <InputError :message="form.errors.is_paid" class="mt-2" />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <InputLabel for="full_name" value="ФИО клиента" />
+                            <InputLabel for="first_name" value="Имя клиента" />
                             <TextInput
-                                id="full_name"
-                                v-model="form.full_name"
+                                id="first_name"
+                                v-model="form.first_name"
                                 type="text"
                                 class="mt-1 block w-full"
                             />
-                            <InputError :message="form.errors.full_name" class="mt-2" />
+                            <InputError :message="form.errors.first_name" class="mt-2" />
                         </div>
 
                         <div>
-                            <InputLabel for="email" value="Email" />
+                            <InputLabel for="last_name" value="Фамилия клиента" />
                             <TextInput
-                                id="email"
-                                v-model="form.email"
-                                type="email"
+                                id="last_name"
+                                v-model="form.last_name"
+                                type="text"
                                 class="mt-1 block w-full"
                             />
-                            <InputError :message="form.errors.email" class="mt-2" />
+                            <InputError :message="form.errors.last_name" class="mt-2" />
                         </div>
                     </div>
 
@@ -82,6 +47,19 @@
                         </div>
 
                         <div>
+                            <InputLabel for="email" value="Email" />
+                            <TextInput
+                                id="email"
+                                v-model="form.email"
+                                type="email"
+                                class="mt-1 block w-full"
+                            />
+                            <InputError :message="form.errors.email" class="mt-2" />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
                             <InputLabel for="address" value="Адрес доставки" />
                             <TextInput
                                 id="address"
@@ -90,6 +68,25 @@
                                 class="mt-1 block w-full"
                             />
                             <InputError :message="form.errors.address" class="mt-2" />
+                        </div>
+
+                        <div>
+                            <InputLabel for="status" value="Статус заказа" />
+                            <SelectInput
+                                id="status"
+                                v-model="form.status"
+                                class="mt-1 block w-full"
+                                required
+                            >
+                                <option value="pending">Ожидает обработки</option>
+                                <option value="processing">В обработке</option>
+                                <option value="shipped">Отправлен</option>
+                                <option value="delivered">Доставлен</option>
+                                <option value="completed">Завершен</option>
+                                <option value="cancelled">Отменен</option>
+                                <option value="refunded">Возвращен</option>
+                            </SelectInput>
+                            <InputError :message="form.errors.status" class="mt-2" />
                         </div>
                     </div>
 
@@ -145,8 +142,8 @@ const props = defineProps({
 
 const form = useForm({
     status: props.order.status,
-    is_paid: props.order.is_paid,
-    full_name: props.order.full_name,
+    first_name: props.order.first_name,
+    last_name: props.order.last_name,
     email: props.order.email,
     phone: props.order.phone,
     address: props.order.address,
@@ -155,7 +152,6 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.is_paid = form.is_paid === 'true';
     form.post(route('admin.orders.update', props.order.id), {
         preserveScroll: true,
         onSuccess: () => {

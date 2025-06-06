@@ -8,7 +8,7 @@
                         <!-- Логотип -->
                         <div class="shrink-0 flex items-center">
                             <Link :href="route('home')" class="text-2xl font-bold text-indigo-600">
-                                Интернет-магазин
+                                {{ $t('common.shopName')}}
                             </Link>
                         </div>
 
@@ -206,30 +206,30 @@
             <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
-                        <h3 class="text-lg font-semibold mb-4">О нас</h3>
+                        <h3 class="text-lg font-semibold mb-4">{{ $t('footer.about') }}</h3>
                         <p class="text-gray-600">
-                            Ваш надежный поставщик качественных товаров. Мы стремимся предложить лучший ассортимент и обслуживание.
+                            {{ $t('footer.aboutText') }}
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold mb-4">Ссылки</h3>
+                        <h3 class="text-lg font-semibold mb-4">{{ $t('footer.links') }}</h3>
                         <ul class="space-y-2">
                             <li>
-                                <Link :href="route('catalog.index')" class="text-gray-600 hover:text-indigo-600">Каталог</Link>
+                                <Link :href="route('catalog.index')" class="text-gray-600 hover:text-indigo-600">{{ $t('navigation.catalog') }}</Link>
                             </li>
                             <li>
-                                <Link :href="route('about')" class="text-gray-600 hover:text-indigo-600">О нас</Link>
+                                <Link :href="route('about')" class="text-gray-600 hover:text-indigo-600">{{ $t('footer.about') }}</Link>
                             </li>
                             <li>
-                                <Link :href="route('contact.index')" class="text-gray-600 hover:text-indigo-600">Контакты</Link>
+                                <Link :href="route('contact.index')" class="text-gray-600 hover:text-indigo-600">{{ $t('footer.contacts') }}</Link>
                             </li>
                             <li>
-                                <Link :href="route('news.index')" class="text-gray-600 hover:text-indigo-600">Новости</Link>
+                                <Link :href="route('news.index')" class="text-gray-600 hover:text-indigo-600">{{ $t('admin.news') }}</Link>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-lg font-semibold mb-4">Контакты</h3>
+                        <h3 class="text-lg font-semibold mb-4">{{ $t('navigation.contacts') }}</h3>
                         <ul class="space-y-2">
                             <li class="flex items-center text-gray-600">
                                 <MapPinIcon class="h-5 w-5 mr-2" />
@@ -247,7 +247,7 @@
                     </div>
                 </div>
                 <div class="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600">
-                    <p>&copy; {{ new Date().getFullYear() }} Интернет-магазин. Все права защищены.</p>
+                    <p>&copy; {{ new Date().getFullYear() }} {{ $t('common.shopName')}}. {{ $t('footer.rights') }}.</p>
                 </div>
             </div>
         </footer>

@@ -35,10 +35,6 @@
                             <p class="font-medium">{{ order.payment_method || 'Не указан' }}</p>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-600">Статус оплаты</p>
-                            <p class="font-medium">{{ order.is_paid ? 'Оплачен' : 'Ожидает оплаты' }}</p>
-                        </div>
-                        <div>
                             <p class="text-sm text-gray-600">Способ доставки</p>
                             <p class="font-medium">{{ order.shipping_method || 'Не указан' }}</p>
                         </div>

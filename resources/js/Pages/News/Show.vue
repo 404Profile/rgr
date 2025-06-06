@@ -7,7 +7,7 @@
             <nav class="flex mb-6" aria-label="Breadcrumb">
                 <ol class="flex items-center space-x-2">
                     <li>
-                        <Link :href="route('home')" class="text-gray-500 hover:text-gray-700">Главная</Link>
+                        <Link :href="route('home')" class="text-gray-500 hover:text-gray-700">{{ $t('navigation.home') }}</Link>
                     </li>
                     <li>
                         <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -15,7 +15,7 @@
                         </svg>
                     </li>
                     <li>
-                        <Link :href="route('news.index')" class="text-gray-500 hover:text-gray-700">Новости</Link>
+                        <Link :href="route('news.index')" class="text-gray-500 hover:text-gray-700">{{ $t('navigation.news') }}</Link>
                     </li>
                     <li>
                         <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -51,7 +51,7 @@
                         <div class="flex justify-between items-center">
                             <Link :href="route('news.index')" class="flex items-center text-indigo-600 hover:text-indigo-500">
                                 <ArrowLeftIcon class="h-5 w-5 mr-1" />
-                                Назад к новостям
+                                {{ $t('news.backToNews') }}
                             </Link>
 
                             <div class="flex space-x-4">
@@ -116,12 +116,11 @@
 
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import { CalendarIcon, ArrowLeftIcon } from '@heroicons/vue/24/outline';
 import MainLayout from '@/Layouts/MainLayout.vue';
+import { CalendarIcon, ArrowLeftIcon } from '@heroicons/vue/24/outline';
 
-const props = defineProps({
-    article: Object,
-    relatedArticles: Array
+defineProps({
+    article: Object
 });
 
 const formatDate = (dateString) => {
