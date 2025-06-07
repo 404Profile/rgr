@@ -81,7 +81,6 @@ defineProps({
 const getRoleName = (role) => {
     const roles = {
         'admin': 'Администратор',
-        'manager': 'Менеджер',
         'user': 'Пользователь'
     };
     return roles[role] || role;

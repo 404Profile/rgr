@@ -46,7 +46,6 @@
                                 required
                             >
                                 <option value="user">Пользователь</option>
-                                <option value="manager">Менеджер</option>
                                 <option value="admin">Администратор</option>
                             </SelectInput>
                             <InputError :message="form.errors.role" class="mt-2" />
