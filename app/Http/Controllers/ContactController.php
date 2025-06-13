@@ -12,10 +12,11 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $contact = Contact::first();
+        $contact = Contact::query()->latest()->first();
 
         return Inertia::render('Contact', [
-            'contact' => $contact
+            'contact' => $contact,
+            'status' => session('success')
         ]);
     }
 

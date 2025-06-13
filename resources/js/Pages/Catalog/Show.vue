@@ -55,7 +55,9 @@
 
                         <div class="mb-6">
                             <div class="flex items-center">
-                                <label for="quantity" class="block text-sm font-medium text-gray-700 mr-4">Количество:</label>
+                                <label for="quantity" class="block text-sm font-medium text-gray-700 mr-4">
+                                    {{ $t('catalog.quantity') }}:
+                                </label>
                                 <div class="flex items-center border rounded-md">
                                     <button
                                         type="button"
@@ -92,7 +94,7 @@
                                 :disabled="product.quantity <= 0"
                             >
                                 <ShoppingCartIcon class="h-5 w-5 mr-2" />
-                                Добавить в корзину
+                                {{ $t('catalog.addToCart') }}
                             </button>
                         </div>
 
@@ -101,7 +103,9 @@
                         </div>
 
                         <div v-if="product.specifications" class="border-t border-gray-200 pt-6">
-                            <h3 class="text-lg font-medium text-gray-900 mb-4">Характеристики</h3>
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">
+                                {{ $t('catalog.specifications') }}
+                            </h3>
                             <dl class="grid grid-cols-1 gap-y-4">
                                 <div v-for="(value, key) in product.specifications" :key="key" class="grid grid-cols-3 gap-4">
                                     <dt class="text-sm font-medium text-gray-500">{{ key }}</dt>
@@ -115,7 +119,7 @@
 
             <!-- Похожие товары -->
             <div v-if="relatedProducts.length" class="mt-12">
-                <h2 class="text-xl font-semibold text-gray-900 mb-6">Похожие товары</h2>
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">{{ $t('catalog.specifications') }}</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div v-for="relatedProduct in relatedProducts" :key="relatedProduct.id" class="bg-white shadow-md rounded-lg overflow-hidden">
                         <Link :href="route('catalog.show', relatedProduct.slug)">

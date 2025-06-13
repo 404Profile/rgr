@@ -8,11 +8,6 @@
                 </Link>
             </div>
 
-            <!-- Флеш-сообщение об успехе -->
-            <div v-if="$page.props.flash.success" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">
-                {{ $page.props.flash.success }}
-            </div>
-
             <div v-if="contacts && contacts.length > 0" class="bg-white shadow-md rounded-lg overflow-hidden">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">

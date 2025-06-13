@@ -83,6 +83,10 @@
                             <InputLabel for="image" value="Изображение" />
                             <div v-if="news.image" class="mt-2 mb-2">
                                 <img :src="`/storage/${news.image}`" alt="" class="h-40 object-contain rounded">
+                                <label class="flex items-center mt-2">
+                                    <input type="checkbox" v-model="form.remove_image">
+                                    <span class="ml-2">Удалить изображение</span>
+                                </label>
                             </div>
                             <input
                                 id="image"
@@ -188,6 +192,7 @@ const form = useForm({
     type: props.news.type,
     published_at: formatDateForInput(props.news.published_at),
     active: Boolean(props.news.active),
+    remove_image: false,
     _method: 'PUT',
 });
 

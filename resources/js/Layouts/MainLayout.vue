@@ -26,6 +26,9 @@
                             <NavLink :href="route('news.index')" :active="route().current('news.*')">
                                 {{ $t('navigation.news') }}
                             </NavLink>
+                            <NavLink :href="route('pages.index')" :active="route().current('pages.*')">
+                                {{ $t('navigation.pages') }}
+                            </NavLink>
                         </div>
                     </div>
 

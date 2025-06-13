@@ -76,6 +76,7 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/sitemap', [PageController::class, 'sitemap'])->name('pages.sitemap');
 Route::get('/page/{slug}', [PageController::class, 'show'])->name('pages.show');
+Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
 
 // Заказы
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
@@ -117,12 +118,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('pages', AdminPageController::class);
 
     // Управление контактами
-    Route::get('contacts', [AdminContactController::class, 'index'])->name('contacts.index');
-    Route::get('contacts/create', [AdminContactController::class, 'create'])->name('contacts.create');
-    Route::post('contacts', [AdminContactController::class, 'store'])->name('contacts.store');
-    Route::get('contacts/{id?}/edit', [AdminContactController::class, 'edit'])->name('contacts.edit');
-    Route::put('contacts/{id?}', [AdminContactController::class, 'update'])->name('contacts.update');
-    Route::delete('contacts/{id}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
+    Route::resource('contacts', AdminContactController::class);
 
     // Управление пользователями (только для администраторов)
     Route::resource('users', AdminUserController::class);

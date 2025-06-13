@@ -3,6 +3,13 @@
         <div class="max-w-3xl mx-auto">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-semibold">Редактирование страницы</h1>
+                <Link
+                    :href="route('pages.show', page.slug)"
+                    target="_blank"
+                    class="text-blue-600 hover:text-blue-900"
+                >
+                    {{ $t('admin.viewOnSite') }}
+                </Link>
                 <Link :href="route('admin.pages.index')" class="text-indigo-600 hover:text-indigo-900">
                     Назад к списку
                 </Link>
@@ -124,7 +131,7 @@ const form = useForm({
     content: props.page.content || '',
     meta_title: props.page.meta_title || '',
     meta_description: props.page.meta_description || '',
-    active: props.page.active,
+    active: !!props.page.active,
     _method: 'PUT'
 });
 

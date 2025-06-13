@@ -219,11 +219,8 @@ const removeSocialLink = (index) => {
 };
 
 const submit = () => {
-    form.post(route('admin.contacts.update'), {
+    form.put(route('admin.contacts.update', props.contact.id), {
         preserveScroll: true,
-        onSuccess: () => {
-            router.visit(route('admin.contacts.index'));
-        },
     });
 };
 

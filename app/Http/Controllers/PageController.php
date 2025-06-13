@@ -7,13 +7,35 @@ use App\Models\News;
 use App\Models\Page;
 use App\Models\Contact;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class PageController extends Controller
 {
+    public function index()
+    {
+        $pages = Page::where('active', true)
+            ->select(['id', 'title', 'slug', 'content'])
+            ->get();
+
+        return Inertia::render('Pages/Index', [
+            'pages' => $pages
+        ]);
+    }
+
     public function show($slug)
     {
-        $page = Page::where('slug', $slug)->firstOrFail();
+        if (Auth::user() && Auth::user()->isAdmin()) {
+            $page = Page::query()
+                ->where('slug', $slug)
+                ->firstOrFail();
+        } else {
+            $page = Page::query()
+                ->where('slug', $slug)
+                ->where('active', true)
+                ->firstOrFail();
+        }
+
         return Inertia::render('Pages/Show', [
             'page' => $page
         ]);

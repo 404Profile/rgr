@@ -9,11 +9,6 @@
                     </Link>
                 </div>
 
-                <!-- Сообщение об успехе -->
-                <div v-if="$page.props.flash.success" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                    <span class="block sm:inline">{{ $page.props.flash.success }}</span>
-                </div>
-
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">

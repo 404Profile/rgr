@@ -53,29 +53,29 @@
             <InputError :message="form.errors.slug" class="mt-2" />
           </div>
 
-          <div class="mb-6">
-            <InputLabel for="image" value="Изображение" />
-            <div v-if="category.image" class="mt-2 mb-2">
-              <p class="text-sm text-gray-600 mb-2">Текущее изображение:</p>
-              <img :src="getImageUrl(category.image)" class="h-32 w-32 object-cover rounded-md" alt="Category Image" />
+            <div class="mb-6">
+                <InputLabel for="image" value="Изображение" />
+                <div v-if="category.image" class="mt-2 mb-2">
+                    <p class="text-sm text-gray-600 mb-2">Текущее изображение:</p>
+                    <img :src="getImageUrl(category.image)" class="h-32 w-32 object-cover rounded-md" alt="Category Image" />
+                    <label class="flex items-center mt-2">
+                        <input type="checkbox" v-model="form.remove_image">
+                        <span class="ml-2">Удалить изображение</span>
+                    </label>
+                </div>
+                <FileInput
+                    id="image"
+                    @input="form.image = $event.target.files[0]"
+                    class="mt-1 block w-full"
+                />
+                <div class="mt-1 text-sm text-gray-500">
+                    Рекомендуемый размер: 800x800px, JPG или PNG
+                </div>
+                <InputError :message="form.errors.image" class="mt-2" />
             </div>
-            <FileInput
-              id="image"
-              @input="form.image = $event.target.files[0]"
-              class="mt-1 block w-full"
-            />
-            <div class="mt-1 text-sm text-gray-500">
-              Рекомендуемый размер: 800x800px, JPG или PNG
-            </div>
-            <InputError :message="form.errors.image" class="mt-2" />
 
-            <div v-if="form.image" class="mt-2">
-              <p class="text-sm text-gray-600 mb-2">Новое изображение:</p>
-              <img :src="previewImage" class="h-32 w-32 object-cover rounded-md" alt="Image Preview" />
-            </div>
-          </div>
 
-          <div class="mb-6">
+            <div class="mb-6">
             <div class="flex items-center">
               <Checkbox id="active" v-model:checked="form.active" />
               <InputLabel for="active" value="Активна" class="ml-2" />
@@ -144,6 +144,7 @@ const form = useForm({
   image: null,
   active: props.category.active,
   description: props.category.description || '',
+  remove_image: false,
   _method: 'PUT'
 });
 

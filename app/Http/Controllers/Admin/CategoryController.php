@@ -71,24 +71,24 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $data = $request->validated();
+        $validated = $request->validated();
 
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name']);
+        if (empty($validated['slug'])) {
+            $validated['slug'] = Str::slug($validated['name']);
         }
 
-        if ($request->hasFile('image')) {
-            if ($category->image) {
-                Storage::disk('public')->delete($category->image);
-            }
-
-            $data['image'] = $request->file('image')->store('categories', 'public');
+        if ($request->boolean('remove_image') && $category->image) {
+            Storage::disk('public')->delete($category->image);
+            $validated['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('categories', 'public');
+        } else {
+            $validated['image'] = $category->image;
         }
 
-        $category->update($data);
+        $category->update($validated);
 
-        return redirect()->route('admin.categories.index')
-            ->with('success', 'Категория успешно обновлена');
+        return redirect()->route('admin.categories.index')->with('success', 'Категория успешно обновлена');
     }
 
     public function destroy(Category $category)

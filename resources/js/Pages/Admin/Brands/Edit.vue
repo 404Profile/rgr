@@ -51,14 +51,12 @@
                             <InputLabel for="logo" value="Логотип" />
                             <div v-if="brand.logo" class="mt-2 mb-2">
                                 <img :src="`/storage/${brand.logo}`" alt="" class="h-20 object-contain">
+                                <label class="flex items-center mt-2">
+                                    <input type="checkbox" v-model="form.remove_logo">
+                                    <span class="ml-2">Удалить логотип</span>
+                                </label>
                             </div>
-                            <input
-                                id="logo"
-                                type="file"
-                                @input="form.logo = $event.target.files[0]"
-                                class="mt-1 block w-full"
-                                accept="image/*"
-                            />
+                            <input id="logo" type="file" @input="form.logo = $event.target.files[0]" class="mt-1 block w-full" accept="image/*" />
                             <InputError :message="form.errors.logo" class="mt-2" />
                         </div>
 
@@ -105,6 +103,7 @@ const form = useForm({
     name: props.brand.name,
     slug: props.brand.slug,
     description: props.brand.description || '',
+    remove_logo: false,
     logo: null,
     _method: 'PUT',
 });

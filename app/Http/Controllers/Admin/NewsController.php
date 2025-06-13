@@ -59,24 +59,27 @@ class NewsController extends Controller
 
     public function update(UpdateNewsRequest $request, News $news)
     {
-        $data = $request->validated();
+        $validated = $request->validated();
 
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title']);
+        if (empty($validated['slug'])) {
+            $validated['slug'] = Str::slug($validated['title']);
         }
 
-        if ($request->hasFile('image')) {
-            if ($news->image) {
-                Storage::disk('public')->delete($news->image);
-            }
-
-            $data['image'] = $request->file('image')->store('news', 'public');
+        // Удаление изображения только если выбрана опция
+        if ($request->boolean('remove_image') && $news->image) {
+            Storage::disk('public')->delete($news->image);
+            $validated['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('news', 'public');
+        } else {
+            // Оставляем старое изображение, если новое не загружено
+            $validated['image'] = $news->image;
         }
 
-        $news->update($data);
+        // Обновляем новость
+        $news->update($validated);
 
-        return redirect()->route('admin.news.index')
-            ->with('success', 'Новость успешно обновлена');
+        return redirect()->route('admin.news.index')->with('success', 'Новость успешно обновлена');
     }
 
     public function destroy(News $news)

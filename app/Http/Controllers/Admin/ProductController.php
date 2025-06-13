@@ -83,38 +83,39 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $data = $request->validated();
+        $validated = $request->validated();
 
-        if (empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['name']);
+        if (empty($validated['slug'])) {
+            $validated['slug'] = Str::slug($validated['name']);
         }
 
-        if ($request->hasFile('image')) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
-            }
-
-            $data['image'] = $request->file('image')->store('products', 'public');
+        if ($request->boolean('remove_image') && $product->image) {
+            Storage::disk('public')->delete($product->image);
+            $validated['image'] = null;
+        } elseif ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        } else {
+            $validated['image'] = $product->image;
         }
 
-        if ($request->hasFile('gallery')) {
-            if ($product->gallery) {
-                foreach ($product->gallery as $image) {
-                    Storage::disk('public')->delete($image);
-                }
+        if ($request->boolean('remove_gallery') && $product->gallery) {
+            foreach ($product->gallery as $image) {
+                Storage::disk('public')->delete($image);
             }
-
+            $validated['gallery'] = [];
+        } elseif ($request->hasFile('gallery')) {
             $gallery = [];
             foreach ($request->file('gallery') as $file) {
                 $gallery[] = $file->store('products/gallery', 'public');
             }
-            $data['gallery'] = $gallery;
+            $validated['gallery'] = $gallery;
+        } else {
+            $validated['gallery'] = $product->gallery;
         }
 
-        $product->update($data);
+        $product->update($validated);
 
-        return redirect()->route('admin.products.index')
-            ->with('success', 'Товар успешно обновлен');
+        return redirect()->route('admin.products.index')->with('success', 'Товар успешно обновлен');
     }
 
     public function destroy(Product $product)

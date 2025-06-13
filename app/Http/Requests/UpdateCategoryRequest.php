@@ -42,6 +42,7 @@ class UpdateCategoryRequest extends FormRequest
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'active' => 'boolean',
+            'remove_image' => 'sometimes|boolean',
         ];
     }
 }

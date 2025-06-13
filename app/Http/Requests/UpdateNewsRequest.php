@@ -35,6 +35,7 @@ class UpdateNewsRequest extends FormRequest
             'type' => 'required|in:news,promo',
             'published_at' => 'nullable|date',
             'active' => 'boolean',
+            'remove_image' => 'sometimes|boolean',
         ];
     }
 }

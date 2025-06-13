@@ -34,26 +34,17 @@ class ContactController extends Controller
             ->with('success', 'Контактная информация успешно создана');
     }
 
-    public function edit()
+    public function edit(Contact $contact)
     {
-        $contact = Contact::first();
-
         return Inertia::render('Admin/Contacts/Edit', [
             'contact' => $contact
         ]);
     }
 
-    public function update(UpdateContactRequest $request)
+    public function update(UpdateContactRequest $request, Contact $contact)
     {
         $data = $request->validated();
-
-        $contact = Contact::first();
-
-        if ($contact) {
-            $contact->update($data);
-        } else {
-            Contact::create($data);
-        }
+        $contact->update($data);
 
         return redirect()->route('admin.contacts.index')
             ->with('success', 'Контактная информация успешно обновлена');

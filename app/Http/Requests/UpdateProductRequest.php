@@ -39,6 +39,8 @@ class UpdateProductRequest extends FormRequest
             'specifications' => 'nullable|array',
             'quantity' => 'required|integer|min:0',
             'active' => 'boolean',
+            'remove_image' => 'sometimes|boolean',
+            'remove_gallery' => 'sometimes|boolean',
         ];
     }
 }

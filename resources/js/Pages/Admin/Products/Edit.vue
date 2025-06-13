@@ -102,25 +102,21 @@
                     </div>
 
                     <div class="mb-6">
-                        <InputLabel for="image" value="Основное изображение" />
+                        <InputLabel for="image" value="Главное изображение" />
                         <div v-if="product.image" class="mt-2 mb-2">
                             <p class="text-sm text-gray-600 mb-2">Текущее изображение:</p>
                             <img :src="getImageUrl(product.image)" class="h-32 w-32 object-cover rounded-md" alt="Product Image" />
+                            <label class="flex items-center mt-2">
+                                <input type="checkbox" v-model="form.remove_image">
+                                <span class="ml-2">Удалить изображение</span>
+                            </label>
                         </div>
                         <FileInput
                             id="image"
                             @input="form.image = $event.target.files[0]"
                             class="mt-1 block w-full"
                         />
-                        <div class="mt-1 text-sm text-gray-500">
-                            Рекомендуемый размер: 800x800px, JPG или PNG
-                        </div>
                         <InputError :message="form.errors.image" class="mt-2" />
-
-                        <div v-if="form.image" class="mt-2">
-                            <p class="text-sm text-gray-600 mb-2">Новое изображение:</p>
-                            <img :src="previewImage" class="h-32 w-32 object-cover rounded-md" alt="Image Preview" />
-                        </div>
                     </div>
 
                     <div class="mb-6">
@@ -132,9 +128,10 @@
                                     <img :src="getImageUrl(image)" class="h-24 w-24 object-cover rounded-md" :alt="`Gallery Image ${index+1}`" />
                                 </div>
                             </div>
-                            <p class="text-sm text-gray-500 mt-2">
-                                При загрузке новых изображений, текущие будут заменены
-                            </p>
+                            <label class="flex items-center mt-2">
+                                <input type="checkbox" v-model="form.remove_gallery">
+                                <span class="ml-2">Удалить галерею</span>
+                            </label>
                         </div>
                         <FileInput
                             id="gallery"
@@ -143,15 +140,6 @@
                             multiple
                         />
                         <InputError :message="form.errors.gallery" class="mt-2" />
-
-                        <div v-if="previewGallery.length" class="mt-2">
-                            <p class="text-sm text-gray-600 mb-2">Новая галерея:</p>
-                            <div class="flex flex-wrap gap-2">
-                                <div v-for="(preview, index) in previewGallery" :key="index" class="relative">
-                                    <img :src="preview" class="h-24 w-24 object-cover rounded-md" :alt="`Gallery Preview ${index+1}`" />
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="mb-6">
@@ -282,6 +270,8 @@ const form = useForm({
     active: props.product.active,
     description: props.product.description || '',
     specifications: {},
+    remove_image: false,
+    remove_gallery: false,
     _method: 'PUT'
 });
 

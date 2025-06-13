@@ -8,7 +8,7 @@
                         {{ $t('admin.edit') }}
                     </Link>
                     <Link :href="route('admin.pages.index')" class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
-                        Назад к списку
+                        {{ $t('common.back') }}
                     </Link>
                 </div>
             </div>

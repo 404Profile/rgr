@@ -66,17 +66,20 @@ class BrandController extends Controller
             'slug' => 'nullable|string|max:255|unique:brands,slug,' . $brand->id,
             'description' => 'nullable|string',
             'logo' => 'nullable|image|max:2048',
+            'remove_logo' => 'sometimes|boolean',
         ]);
 
         if (empty($validated['slug'])) {
             $validated['slug'] = Str::slug($validated['name']);
         }
 
-        if ($request->hasFile('logo')) {
-            if ($brand->logo) {
-                \Storage::disk('public')->delete($brand->logo);
-            }
+        if ($request->boolean('remove_logo') && $brand->logo) {
+            Storage::disk('public')->delete($brand->logo);
+            $validated['logo'] = null;
+        } elseif ($request->hasFile('logo')) {
             $validated['logo'] = $request->file('logo')->store('brands', 'public');
+        } else {
+            $validated['logo'] = $brand->logo;
         }
 
         $brand->update($validated);
