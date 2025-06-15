@@ -13,8 +13,10 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('brand_id')->constrained()->onDelete('cascade');
             $table->string('name');
+            $table->string('name_en')->nullable();
             $table->string('slug')->unique();
             $table->text('description')->nullable();
+            $table->text('description_en')->nullable();
             $table->decimal('price', 10, 2);
             $table->string('image')->nullable();
             $table->json('gallery')->nullable();

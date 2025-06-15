@@ -136,7 +136,9 @@
                                     <span class="text-xs text-gray-500">{{ product.category.name }}</span>
                                 </div>
                                 <Link :href="route('catalog.show', product.slug)" class="block">
-                                    <h3 class="text-lg font-medium text-gray-900 hover:text-indigo-600">{{ product.name }}</h3>
+                                    <h3 class="text-lg font-medium text-gray-900 hover:text-indigo-600">
+                                        {{ $i18n.locale === 'en' && product.name_en ? product.name_en : product.name }}
+                                    </h3>
                                 </Link>
                                 <div class="mt-2 flex justify-between items-center">
                                     <p class="text-xl font-bold text-gray-900">{{ formatCurrency(product.price) }}</p>
@@ -163,15 +165,13 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import {computed, ref, watch} from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ShoppingCartIcon } from '@heroicons/vue/24/outline';
 import MainLayout from '@/Layouts/MainLayout.vue';
 import TextInput from '@/Components/TextInput.vue';
 import Pagination from '@/Components/Pagination.vue';
 import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
 
 const props = defineProps({
     products: Object,
@@ -262,4 +262,6 @@ const addToCart = (product) => {
         preserveScroll: true
     });
 };
+
+const { t, locale } = useI18n();
 </script>

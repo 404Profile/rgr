@@ -41,7 +41,9 @@
                             </Link>
                         </div>
 
-                        <h1 class="text-2xl font-bold text-gray-900 mb-2">{{ product.name }}</h1>
+                        <h1 class="text-2xl font-bold text-gray-900 mb-2">
+                            {{ $i18n.locale === 'en' && product.name_en ? product.name_en : product.name }}
+                        </h1>
 
                         <div class="flex items-center space-x-4 mb-6">
                             <span class="text-3xl font-bold text-gray-900">{{ formatCurrency(product.price) }}</span>
@@ -99,7 +101,8 @@
                         </div>
 
                         <div class="prose prose-sm text-gray-700 mb-6">
-                            <div v-html="product.description"></div>
+                            <div v-if="$i18n.locale === 'en' && product.description_en" v-html="product.description_en" />
+                            <div v-else v-html="product.description" />
                         </div>
 
                         <div v-if="product.specifications" class="border-t border-gray-200 pt-6">
@@ -136,7 +139,9 @@
                                 <span class="text-xs text-gray-500">{{ relatedProduct?.category?.name }}</span>
                             </div>
                             <Link :href="route('catalog.show', relatedProduct.slug)" class="block">
-                                <h3 class="text-lg font-medium text-gray-900 hover:text-indigo-600">{{ relatedProduct.name }}</h3>
+                                <h3 class="text-lg font-medium text-gray-900 hover:text-indigo-600">
+                                    {{ $i18n.locale === 'en' && relatedProduct?.name_en ? relatedProduct?.name_en : relatedProduct?.name }}
+                                </h3>
                             </Link>
                             <div class="mt-2 flex justify-between items-center">
                                 <p class="text-xl font-bold text-gray-900">{{ formatCurrency(relatedProduct.price) }}</p>
@@ -161,6 +166,7 @@ import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { ShoppingCartIcon, MinusIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import MainLayout from '@/Layouts/MainLayout.vue';
+import {useI18n} from "vue-i18n";
 
 const props = defineProps({
     product: Object,
@@ -202,4 +208,6 @@ const addRelatedToCart = (product) => {
         preserveScroll: true
     });
 };
+
+const { t, locale } = useI18n();
 </script>
